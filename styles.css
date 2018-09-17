@@ -3,7 +3,7 @@
 	src: url(fonts/quicksand-v7-latin-regular);
 }
 
-img{
+.row img{
 	margin-top: 10px;
 	margin-left: -100px;
 	float: left;
@@ -45,7 +45,7 @@ p {
 }
 
 #body{
-	margin-top: 50px;
+	/* margin-top: -50px; */
 	padding-left: 30px;
 }
 
@@ -53,4 +53,52 @@ p {
 	font-family: Quicksand;
 	text-align: center;
 	padding-bottom: 150px;
+	padding-top: 50px;
+}
+
+#body #about h2{
+	font-family: Quicksand;
+	text-align: center;
+	padding-bottom: 50px;
+}
+
+#body #about h4{
+	font-family: Quicksand;
+	text-align: center;
+	padding-bottom: 150px;
+	margin-left: 200px;
+	margin-right: 200px;
+}
+
+.icons_row img{
+	margin-top: -120px;
+	text-align: center;
+}
+
+.tab {
+	margin-left: 300px;
+}
+
+#start_creating h2{
+	font-family:Quicksand;
+	text-align:center;
+	padding-bottom: 50px;
+}
+
+#start_creating img{
+	margin:60px;
+}
+
+#start_creating .icons{
+	padding-bottom: 100px;
+}
+
+.footer{
+	font-family: Quicksand;
+}
+
+.footer h4{
+	text-align: left;
+	margin-left: 25px;
+	margin-bottom: 20px;
 }
