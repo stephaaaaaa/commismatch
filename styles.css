@@ -3,6 +3,8 @@
 	src: url(fonts/quicksand-v7-latin-regular);
 }
 
+/* Landing */
+
 .row img{
 	margin-top: 10px;
 	margin-left: -100px;
@@ -102,3 +104,36 @@ p {
 	margin-left: 25px;
 	margin-bottom: 20px;
 }
+
+/* End landing */
+
+/* Login/signup */
+
+.login_signup_well {
+	position:absolute; 
+	top:50%; 
+	right:50%; 
+	left:47%; 
+	margin: -100px 0 0 -150px;
+	font-family: Quicksand;
+}
+
+.login_signup_well .well{
+	background-color: #FFFFFF;
+	border-color: #C38D9E;
+	border-width: 3px;
+}
+
+.login_signup_well .label{
+	color:black;
+}
+
+.login_signup_btn{
+	margin-top: 20%;
+	margin-left: 60%;
+	text-align:center;
+	border-color: #41B3A3;
+	
+}
+
+/* End login/signup */
