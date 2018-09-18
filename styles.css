@@ -118,6 +118,31 @@ p {
 	font-family: Quicksand;
 }
 
+.signup_well{
+	position:absolute; 
+	top:20%; 
+	left:15%;  
+	margin: -100px 0 0 -150px;
+	font-family: Quicksand;
+}
+
+.signup_well .well{
+	background-color: #FFFFFF;
+	border-color: #C38D9E;
+	border-width: 3px;
+}
+
+.signup_well .label{
+	color:black;
+}
+
+.signup_btn {
+	margin-top: 10%;
+	margin-left: 190%;
+	text-align:center;
+	border-color: #41B3A3;
+}
+
 .login_signup_well .well{
 	background-color: #FFFFFF;
 	border-color: #C38D9E;
@@ -133,7 +158,16 @@ p {
 	margin-left: 60%;
 	text-align:center;
 	border-color: #41B3A3;
-	
+}
+
+.rad_btns{
+	margin-left: 10%;
+	color:black;
+}
+
+.icon{
+	margin-left:103%;
+	margin-top:-80%;
 }
 
 /* End login/signup */
