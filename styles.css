@@ -171,3 +171,40 @@ p {
 }
 
 /* End login/signup */
+
+/* Feed */
+
+#banner {
+	background-color:FFFFFF;
+	margin-left: 20px;
+	margin-top: 20px;
+	font-family:Quicksand;
+	position:fixed;
+	opacity:1;
+}
+
+#banner button{
+	border:none;
+	background-color:#FFFFFF;
+}
+
+#banner #profile {
+	margin-left:45%;
+}
+
+#body{
+	font-family: Quicksand;
+	padding-top:7%;
+}
+
+.welcome h5{
+	margin-bottom:5%;
+}
+
+.welcome h2{
+	margin-bottom: 100px;
+}
+
+
+
+/* End feed */
