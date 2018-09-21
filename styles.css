@@ -1,6 +1,6 @@
 @font-face {
 	font-family: "Quicksand";
-	src: url(fonts/quicksand-v7-latin-regular);
+	src: url(./fonts/quicksand-v7-latin-regular);
 }
 
 /* Landing */
@@ -99,10 +99,10 @@ p {
 	font-family: Quicksand;
 }
 
-.footer h4{
+.footer h5{
 	text-align: left;
 	margin-left: 25px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 /* End landing */
@@ -175,12 +175,14 @@ p {
 /* Feed */
 
 #banner {
-	background-color:FFFFFF;
+	background-color:#fff;
+	z-index:50;
 	margin-left: 20px;
 	margin-top: 20px;
 	font-family:Quicksand;
 	position:fixed;
-	opacity:1;
+	top: -20px;
+	padding: 20px 20px;
 }
 
 #banner button{
@@ -205,6 +207,67 @@ p {
 	margin-bottom: 100px;
 }
 
-
-
 /* End feed */
+
+/* User */
+
+#user {
+	font-family: Quicksand;
+	margin-top: 10%;
+	margin-left: 1.5%;
+}
+
+#user_content {
+	font-family: Quicksand;
+	margin-left: 30%;
+	margin-top: -30%;
+	max-width: 90%;
+	width: 70%;
+    overflow-x: hidden;
+}
+
+#user_content #posts {
+	margin-top: 5%;
+	margin-bottom: 20%;
+}
+
+#user_content #posts #photos{
+	/* margin-left: 2%; */
+	margin-top: 3%;
+}
+
+#user_content #posts #photos #photo{
+	margin: 2px 2px 2px 2px;
+	padding-bottom: 2px;
+	padding: 2px 2px 2px 2px;
+}
+
+/* End user */
+
+/* Commissions progress */
+
+#user_content #commissions{
+	margin-top:30%;
+	margin-bottom: 20%;
+}
+
+#user_content #commissions h4{
+	margin-bottom: 2%;
+	margin-top: 4%;
+}
+
+#user_content #commissions #current_commission{
+	margin: 2% 0% 2% 2%;
+	width: 50%;
+}
+
+#user_content #commissions #current_commission #description{
+	margin-left: 25%;
+	margin-top: -200px;
+	position: absolute;
+	/* padding-bottom: -70%; */
+}
+/* End commissions progress */
+
+
+
