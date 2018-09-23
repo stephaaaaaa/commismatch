@@ -256,14 +256,18 @@ p {
 	margin-top: 4%;
 }
 
-#user_content #commissions #current_commission{
-	margin: 2% 0% 2% 2%;
-	width: 50%;
-}
-
-#user_content #commissions #current_commission #description{
-	margin-left: 25%;
-	margin-top: -200px;
+#user_content #commissions #commissions_post{
+	margin: 2% 0% 2% 2%;    
+	width: 50%;             
+}                           
+                            
+#user_content #commissions #commissions_post #image{
+	margin-bottom: 15%;     
+}                           
+                            
+#user_content #commissions #commissions_post #description{
+	margin-left: 30%;
+	margin-top: -250px;
 	position: absolute;
 	/* padding-bottom: -70%; */
 }
