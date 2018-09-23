@@ -100,6 +100,8 @@ p {
 }
 
 .footer h5{
+	position: relative;
+	padding-top: 50%;
 	text-align: left;
 	margin-left: 25px;
 	margin-bottom: 10px;
@@ -271,7 +273,35 @@ p {
 	position: absolute;
 	/* padding-bottom: -70%; */
 }
+
 /* End commissions progress */
+
+#user #user_content #messages{
+	/* margin-top:30%; */
+	margin-bottom: 20%;
+}
+
+#user #user_content #messages #mail_tag{
+	margin-bottom: 10%;
+}
+
+/* Table */
+table {
+    font-family: Quicksand;
+    /* border-collapse: collapse; */
+    width: 100%;
+}
+
+td, th {
+    /* border: 1px solid #dddddd; */
+	border-bottom: .5px solid #C38D9E;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
 
 
 
