@@ -23,7 +23,15 @@
 		if(preg_match('[\W]', $password) && preg_match('/\\d/', $password) && preg_match("/([A-Z])/", $password)){
 			return true;
 		}
+		return false;
+	}
 
+	function eighteenOrOlder($birthday, $age){
+		$birthdayAsTime = strtotime($birthday);
+
+		if(time()-$birthdayAsTime >= $age * 31536000){
+			return true;
+		}
 		return false;
 	}
 	
@@ -45,15 +53,20 @@
 	if(containsNumbers($lName)){
 		$errors['lName'] = "Your last name cannot contain numbers.";
 	}
+	// BIRTHDAY VALIDATION
+	if(!eighteenOrOlder($birthday, 18)){
+		$errors['birthday'] = "You must be 18 or older to sign up.";
+	}
+
 	// USERNAME VALIDATION
     if(!isValid($username, 1, 25)){
 		$errors['username'] = "Username is required and must be at least 25 characters.";
     }
-	// // EMAIL VALIDATION
+	// EMAIL VALIDATION
     if(!isValid($email, 1, 50)){
-		$errors['email'] = "Email is required and must be less than 50 characters.";
+		$errors['email'] = "Invalid email.";
 	}
-	// // PASSWORD VALIDATION
+	// PASSWORD VALIDATION
     if(!isValid($password, 10, 128)){
 		$errors['password'] = "Password length must be at least 10 characters long.";
 	} else if($password != $confirmedPassword){
@@ -61,7 +74,8 @@
     } else if(!isGoodPassword($password)){
 		$errors['password'] = "Password must contain at least 1 number, 1 special character, and 1 capital letter.";
 	}
-    
+	
+	
 	// $usernameExists = $dao->userExists($userName);
 	// if($usernameExists){
 	// 	$errors['userName'] = "A user with this username already exists";
@@ -74,7 +88,7 @@
 	// REDIRECT
 	if(empty($errors)){
 		// $dao->addUser($email, $password, $userName);
-		header("Location: feed.html");
+		//header("Location: feed.html");
 	} else {
 		$_SESSION['errors'] = $errors;
 		$_SESSION['presets'] = array('username' => htmlspecialchars($username),

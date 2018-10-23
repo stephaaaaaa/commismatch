@@ -39,14 +39,14 @@
 						<label class="label">First Name</label>
 						<input type="text" name="firstName" class="form-control" maxLength="25" required
 							<?php
-								if(isset($_SESSION['presets']['firstName'])){
-									echo 'value=' . "'" . $_SESSION['presets']['firstName']. "'";
+								if(isset($_SESSION['presets']['fName'])){
+									echo 'value=' . "'" . $_SESSION['presets']['fName']. "'";
 								}
 							?>
 						>
 						<?php 
 							if(isset($_SESSION['errors']['fName'])) { ?>
-							<p id="firstNameError" class="error"><?= $_SESSION['errors']['fName'] ?> yo</p>
+							<p id="firstNameError" class="error"><?= $_SESSION['errors']['fName'] ?></p>
 						<?php } ?>
 					</div>
 					<!--Last name*/-->
@@ -54,20 +54,24 @@
 						<label class="label">Last Name</label>
 						<input type="text" name="lastName" class="form-control" maxLength="25" required
 						<?php
-								if(isset($_SESSION['presets']['lastName'])){
-									echo 'value=' . "'" . $_SESSION['presets']['lastName']. "'";
+								if(isset($_SESSION['presets']['lName'])){
+									echo 'value=' . "'" . $_SESSION['presets']['lName']. "'";
 								}
 						?>
 						>
 						<?php 
-							if(isset($_SESSION['errors']['lastName'])) { ?>
-							<span id="lastNameError" class="error"><?= $_SESSION['errors']['lastName'] ?></span>
+							if(isset($_SESSION['errors']['lName'])) { ?>
+							<span id="lastNameError" class="error"><?= $_SESSION['errors']['lName'] ?></span>
 						<?php } ?>
 					</div>
 					<!--Birthday-->
 					<div class="col-lg-6">
 						<label class="label">Birthday</label>
 						<input type="date" name="birthday" class="form-control" required>
+						<?php 
+							if(isset($_SESSION['errors']['birthday'])) { ?>
+							<p id="birthdayError" class="error"><?= $_SESSION['errors']['birthday'] ?></p>
+						<?php } ?>
 					</div>
 					<!--Radio buttons-->
 					<div class="col-lg-12">
