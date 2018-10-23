@@ -45,8 +45,8 @@
 							?>
 						>
 						<?php 
-							if(isset($_SESSION['errors']['firstName'])) { ?>
-							<span id="firstNameError" class="error"><?= $_SESSION['errors']['firstName'] ?></span>
+							if(isset($_SESSION['errors']['fName'])) { ?>
+							<p id="firstNameError" class="error"><?= $_SESSION['errors']['fName'] ?> yo</p>
 						<?php } ?>
 					</div>
 					<!--Last name*/-->
@@ -107,9 +107,7 @@
 
 					<div class="col-sm-12">
 						<div class="col-sm-3">
-							<button align="center" class="form-control signup_btn"
-							onclick=""
-							>Create </button>
+							<input type="submit" class="form-control signup_btn">
 						</div>
 					</div>
 

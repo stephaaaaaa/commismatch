@@ -18,6 +18,14 @@
 		}
 		return false;
 	}
+
+	function isGoodPassword($password){
+		if(preg_match('[\W]', $password) && preg_match('/\\d/', $password) && preg_match("/([A-Z])/", $password)){
+			return true;
+		}
+
+		return false;
+	}
 	
 	$fName = htmlspecialchars($_POST['firstName']);
 	$lName = htmlspecialchars($_POST['lastName']);
@@ -47,10 +55,12 @@
 	}
 	// // PASSWORD VALIDATION
     if(!isValid($password, 10, 128)){
-		$errors['password'] = "Invalid password. Length must be at least 10 characters long.";
-	} else if ($password != $confirmedPassword){
+		$errors['password'] = "Password length must be at least 10 characters long.";
+	} else if($password != $confirmedPassword){
 		$errors['confirmedPassword'] = "Passwords do not match";
-    }
+    } else if(!isGoodPassword($password)){
+		$errors['password'] = "Password must contain at least 1 number, 1 special character, and 1 capital letter.";
+	}
     
 	// $usernameExists = $dao->userExists($userName);
 	// if($usernameExists){
@@ -72,5 +82,6 @@
 		foreach($errors as &$value){
 			echo $value;
 		}
+		header("Location: signup.php");
 	}
 ?>
