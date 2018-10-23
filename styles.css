@@ -4,6 +4,9 @@
 }
 
 /* Landing */
+body{
+	font-family: Quicksand;
+}
 
 .row img{
 	margin-top: 10px;
