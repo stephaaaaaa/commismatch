@@ -44,58 +44,61 @@
     $password = htmlspecialchars($_POST['password']);
 	$confirmedPassword = htmlspecialchars($_POST['confirmedPassword']);
 	$valid = true;
-	$errors = array();
+	$signupErrors = array();
 
 	//FIRST AND LAST NAME VALIDATION
 	if(containsNumbers($fName)){
-		$errors['fName'] = "Your first name cannot contain numbers.";
+		$signupErrors['fName'] = "Your first name cannot contain numbers.";
 	}
 	if(containsNumbers($lName)){
-		$errors['lName'] = "Your last name cannot contain numbers.";
+		$signupErrors['lName'] = "Your last name cannot contain numbers.";
 	}
 	// BIRTHDAY VALIDATION
 	if(!eighteenOrOlder($birthday, 18)){
-		$errors['birthday'] = "You must be 18 or older to sign up.";
+		$signupErrors['birthday'] = "You must be 18 or older to sign up.";
 	}
 
 	// USERNAME VALIDATION
     if(!isValid($username, 1, 25)){
-		$errors['username'] = "Username is required and must be at least 25 characters.";
+		$signupErrors['username'] = "Username is required and must be at least 25 characters.";
     }
 	// EMAIL VALIDATION
     if(!isValid($email, 1, 50)){
-		$errors['email'] = "Invalid email.";
+		$signupErrors['email'] = "Invalid email.";
 	}
 	// PASSWORD VALIDATION
     if(!isValid($password, 10, 128)){
-		$errors['password'] = "Password length must be at least 10 characters long.";
+		$signupErrors['password'] = "Password length must be at least 10 characters long.";
 	} else if($password != $confirmedPassword){
-		$errors['confirmedPassword'] = "Passwords do not match";
+		$signupErrors['confirmedPassword'] = "Passwords do not match";
     } else if(!isGoodPassword($password)){
-		$errors['password'] = "Password must contain at least 1 number, 1 special character, and 1 capital letter.";
+		$signupErrors['password'] = "Password must contain at least 1 number, 1 special character, and 1 capital letter.";
 	}
 	
 	
 	// $usernameExists = $dao->userExists($userName);
 	// if($usernameExists){
-	// 	$errors['userName'] = "A user with this username already exists";
+	// 	$signupErrors['userName'] = "A user with this username already exists";
 	// }
 	// $emailExists = $dao->userExistsByEmail($email);
 	// if($emailExists){
-	// 	$errors['email'] = "A user with this email already exists";
+	// 	$signupErrors['email'] = "A user with this email already exists";
 	// }
 
 	// REDIRECT
-	if(empty($errors)){
+	if(empty($signupErrors)){
 		// $dao->addUser($email, $password, $userName);
 		header("Location: feed.html");
 	} else {
-		$_SESSION['errors'] = $errors;
+		$_SESSION['errors'] = $signupErrors;
 		$_SESSION['presets'] = array('username' => htmlspecialchars($username),
 										'email' => htmlspecialchars($email)) ;
-		foreach($errors as &$value){
+		foreach($signupErrors as &$value){
 			echo $value;
 		}
+		unset($signupErrors);
+		$signupErrors = array();
+
 		header("Location: signup.php");
 	}
 ?>
