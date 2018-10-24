@@ -88,7 +88,7 @@
 	// REDIRECT
 	if(empty($errors)){
 		// $dao->addUser($email, $password, $userName);
-		//header("Location: feed.html");
+		header("Location: feed.html");
 	} else {
 		$_SESSION['errors'] = $errors;
 		$_SESSION['presets'] = array('username' => htmlspecialchars($username),

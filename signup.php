@@ -92,21 +92,37 @@
 					<div class="col-lg-8">
 						<label class="label">Email</label>
 						<input type="email" name="email" maxLength="50" class="form-control" required>
+						<?php 
+							if(isset($_SESSION['errors']['email'])) { ?>
+							<p id="emailError" class="error"><?= $_SESSION['errors']['email'] ?></p>
+						<?php } ?>
 					</div>
 					<!--Handle-->
 					<div class="col-lg-8">
 						<label class="label">Username/Handle</label>
 						<input type="text" name="username" maxLength="25" class="form-control" required>
+						<?php 
+							if(isset($_SESSION['errors']['handle'])) { ?>
+							<p id="handleError" class="error"><?= $_SESSION['errors']['handle'] ?></p>
+						<?php } ?>
 					</div>
 					<!--Password-->
 					<div class="col-lg-8">
 						<label class="label">Password</label>
 						<input type="password" name="password" minLength="10" class="form-control" required>
+						<?php 
+							if(isset($_SESSION['errors']['password'])) { ?>
+							<p id="passwordError" class="error"><?= $_SESSION['errors']['password'] ?></p>
+						<?php } ?>
 					</div>
 					<!--Confirmed Password-->
 					<div class="col-lg-8">
 						<label class="label">Confirm Password</label>
 						<input type="password" name="confirmedPassword" minLength="10" maxlength="128" class="form-control" required>
+						<?php 
+							if(isset($_SESSION['errors']['confirmedPassword'])) { ?>
+							<p id="confirmedPasswordError" class="error"><?= $_SESSION['errors']['confirmedPassword'] ?></p>
+						<?php } ?>
 					</div>
 
 					<div class="col-sm-12">
