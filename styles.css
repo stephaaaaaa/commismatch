@@ -224,6 +224,11 @@ p {
 	margin-left: 1.5%;
 }
 
+#letter_btn{
+	background: none;
+	border: none;
+}
+
 #user_content {
 	font-family: Quicksand;
 	margin-left: 30%;
