@@ -106,6 +106,29 @@
 							<p id="handleError" class="error"><?= $_SESSION['errors']['handle'] ?></p>
 						<?php } ?>
 					</div>
+					<!-- Accepting commissions? -->
+					<div class="col-sm-8">
+						<label class="label">Will you be accepting commissions?</label>
+						<div class="rad_btns">
+							<div>
+								<input type="radio" name="acceptingCommissions" value="Yes" required>Yes
+							</div>
+							<div>
+								<input type="radio" name="acceptingCommissions" value="No">No
+							</div>
+						</div>
+
+					</div>
+					<!-- Location info -->
+					<div class="col-sm-5">
+						<label class="label">Country</label>
+						<input type="text" name="country" maxlength="25" class="form-control" required>
+						<!-- add handler -->
+					</div>
+					<div class="col-sm-5">
+						<label class="label">City</label>
+						<input type="text" name="city" maxlength="25" class="form-control" required>
+					</div>
 					<!--Password-->
 					<div class="col-lg-8">
 						<label class="label">Password</label>

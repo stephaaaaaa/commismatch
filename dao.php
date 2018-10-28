@@ -1,7 +1,87 @@
 <?php
+    require_once("./config.php");
 
-class Dao{
+    class Dao{
+        // PDO connection using the cleardb url connection
+        private function getConnection()
+        {
+            $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+            $host = $url["host"];
+            $db   = substr($url["path"], 1);
+            $user = $url["user"];
+            $pass = $url["pass"];
+            $connection = new PDO("mysql:host=$host;dbname=$db;", $user, $pass);
+            // Turn on exceptions for debugging. Comment this out for
+            // production or make sure to use try-catch statements.
+            $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $connection; 
+        }
+        
+        // DB connection status string
+        public function getConnectionStatus()
+        {
+            $connection = $this->getConnection();
+            return $connection->getAttribute(constant("PDO::ATTR_CONNECTION_STATUS"));
+        }
 
-}
+        public function addUser($firstname, $lastname, $username, $birthday, $gender, $acceptingCommissions, $city, $country, $email, $password)
+        {
+            $user = $this->getUser($username); // check if there is already a user
+            //if(!$user){
+                // $birthday = strtotime($birthday);
+                // $birthday = date('Y-m-d',$birthday);
+                $connection = $this->getConnection();
+                $query = "INSERT INTO SiteUser(firstName, lastName, handle, birthday, gender, acceptingCommissions, city, country, email, password)
+                            VALUES (:firstName, :lastName, :handle, :birthday, :gender, :acceptingCommissions, :city, :country, :email, :password)";
+                $statement = $connection->prepare($query);
+                $statement->bindParam(':firstName', $firstname);
+                $statement->bindParam(':lastName', $lastname);
+                $statement->bindParam(':handle', $username);
+                $statement->bindParam(':birthday', $birthday);
+                $statement->bindParam(':gender', $gender);
+                $statement->bindParam(':acceptingCommissions', $acceptingCommissions);
+                $statement->bindParam(':city', $city);
+                $statement->bindParam(':country', $country);
+                $statement->bindParam(':email', $email);
+                $statement->bindParam(':password', $password);
+ 
+                try{
+                    $statement->execute();
+                    return true;
+                } catch(PDOException $e){
+                    echo $e->getMessage();
+                    return false;
+                }
+            //}
+            //else {
+            //    print("User @$handle already exists");
+            //}
+        }
+
+        public function getUser($handle)
+        {
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT * FROM SiteUser WHERE handle = :handle");
+            $statement->bindParam(":handle", $handle);
+            $statement->execute();
+
+            return $statement->fetch();
+        }
+
+        public function validateUser($email, $password)
+        {
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT password FROM SiteUser WHERE email = :email");
+            
+            $statement->bindParam(':email', $email);
+            $statement->execute();
+            $row = $statement->fetch();
+            if(!$row){
+                return false;
+            }
+            $digest = $row['password'];
+            return password_verify($password, $digest);
+        }
+    }
 
 ?>

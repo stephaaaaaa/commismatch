@@ -1,7 +1,9 @@
 <?php
     // initialize the dao w/require once
-
-    session_start();
+	require_once("dao.php");
+	session_start();
+	
+	$dao = new Dao();
 
     function isValid($raw, $minLength, $maxLength){
         $trimmed = trim($raw);
@@ -37,11 +39,20 @@
 	
 	$fName = htmlspecialchars($_POST['firstName']);
 	$lName = htmlspecialchars($_POST['lastName']);
-    $birthday = htmlspecialchars($_POST['birthday']);
+	$birthday = htmlspecialchars($_POST['birthday']);
+	$birthday = strtotime($birthday);
+	$birthday = date('Y-m-d',$birthday);
     $gender = $_POST['gender'];
     $email = htmlspecialchars($_POST['email']);
     $username = htmlspecialchars($_POST['username']);
-    $password = htmlspecialchars($_POST['password']);
+	$password = htmlspecialchars($_POST['password']);
+	if(htmlspecialchars($_POST['acceptingCommissions']) == 'Yes'){
+		$acceptingCommissions = '1';
+	}else{
+		$acceptingCommissions = '0';
+	}
+	$country = htmlspecialchars($_POST['country']);
+	$city = htmlspecialchars($_POST['city']);
 	$confirmedPassword = htmlspecialchars($_POST['confirmedPassword']);
 	$valid = true;
 	$signupErrors = array();
@@ -87,8 +98,9 @@
 
 	// REDIRECT
 	if(empty($signupErrors)){
-		// $dao->addUser($email, $password, $userName);
-		header("Location: feed.html");
+		echo "\nFINAL:" . $fName . $lName . $username . $birthday . $gender . $acceptingCommissions . $city . $country . $email . $password;
+		$dao->addUser($fName, $lName, $username, $birthday, $gender, $acceptingCommissions, $city, $country, $email, $password);
+		//header("Location: feed.html");
 	} else {
 		$_SESSION['errors'] = $signupErrors;
 		$_SESSION['presets'] = array('username' => htmlspecialchars($username),
@@ -99,6 +111,6 @@
 		unset($signupErrors);
 		$signupErrors = array();
 
-		header("Location: signup.php");
+		//header("Location: signup.php");
 	}
 ?>

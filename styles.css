@@ -224,9 +224,11 @@ p {
 	margin-left: 1.5%;
 }
 
-#letter_btn{
+#user #letter_btn{
 	background: none;
 	border: none;
+	z-index: 150;
+	position: relative;
 }
 
 #user_content {
