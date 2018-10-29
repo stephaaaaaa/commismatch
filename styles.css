@@ -3,6 +3,10 @@
 	src: url(./Fonts/quicksand-v7-latin-regular.woff);
 }
 
+.error{
+	color:red;
+}
+
 /* Landing */
 body{
 	font-family: Quicksand;
@@ -139,6 +143,10 @@ p {
 
 .signup_well .label{
 	color:black;
+}
+
+.signup_well .error{
+	color:red;
 }
 
 .signup_btn {
