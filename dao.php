@@ -27,7 +27,7 @@
         public function addUser($firstname, $lastname, $username, $birthday, $gender, $acceptingCommissions, $city, $country, $email, $password)
         {
             $user = $this->getUser($username); // check if there is already a user
-            //if(!$user){
+            if(!$user){
                 // $birthday = strtotime($birthday);
                 // $birthday = date('Y-m-d',$birthday);
                 $connection = $this->getConnection();
@@ -52,20 +52,26 @@
                     echo $e->getMessage();
                     return false;
                 }
-            //}
-            //else {
-            //    print("User @$handle already exists");
-            //}
+            }
+            else {
+                print("User @$username already exists");
+            }
         }
 
-        public function getUser($handle)
-        {
+        public function getUser($handle){
             $connection = $this->getConnection();
             $statement = $connection->prepare("SELECT * FROM SiteUser WHERE handle = :handle");
             $statement->bindParam(":handle", $handle);
             $statement->execute();
 
             return $statement->fetch();
+        }
+
+        public function userExists($handle){
+            if($this->getUser($handle)){
+                return true;
+            }
+            return false;
         }
 
         public function validateUser($email, $password)

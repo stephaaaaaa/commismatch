@@ -28,6 +28,10 @@
 		return false;
 	}
 
+	function isValidEmail(){
+
+	}
+
 	function eighteenOrOlder($birthday, $age){
 		$birthdayAsTime = strtotime($birthday);
 
@@ -58,24 +62,56 @@
 	$signupErrors = array();
 
 	//FIRST AND LAST NAME VALIDATION
+	if(!isValid($fName, 1, 25)){
+		$signupErrors['fName'] = "Please enter a valid first name.";
+	}
 	if(containsNumbers($fName)){
 		$signupErrors['fName'] = "Your first name cannot contain numbers.";
 	}
 	if(containsNumbers($lName)){
 		$signupErrors['lName'] = "Your last name cannot contain numbers.";
 	}
+	if(!isValid($lName, 1, 25)){
+		$signupErrors['lName'] = "Please enter a valid last name.";
+	}
 	// BIRTHDAY VALIDATION
 	if(!eighteenOrOlder($birthday, 18)){
 		$signupErrors['birthday'] = "You must be 18 or older to sign up.";
 	}
-
+	// GENDER VALIDATION
+	if($gender == ""){
+		$signupErrors['gender'] = "Select a gender.";
+	}
 	// USERNAME VALIDATION
     if(!isValid($username, 1, 25)){
 		$signupErrors['username'] = "Username is required and must be at least 25 characters.";
     }
 	// EMAIL VALIDATION
     if(!isValid($email, 1, 50)){
-		$signupErrors['email'] = "Invalid email.";
+		if(filter_var($email_a, FILTER_VALIDATE_EMAIL)){
+			$signupErrors['email'] = "Invalid email address.";
+		}else{
+			$signupErrors['email'] = "Please enter an email address.";
+		}
+	}
+	// ACCEPTING COMMISSIONS VALIDATION
+	if($acceptingCommissions == ""){
+		$signupErrors['acceptingCommissions'] = "Specify whether or not you will accept commissions for your art.";
+	}
+	// LOCATION VALIDATION
+	if(!isValid($country, 1, 25)){
+		if(containsNumbers($country)){
+			$signupErrors['country'] = "Country cannot contain numbers";
+		}else{
+			$signupErrors['country'] = "Please enter a country";
+		}
+	}
+	if(!isValid($city, 1, 25)){
+		if(containsNumbers($city)){
+			$signupErrors['city'] = "City cannot contain numbers";
+		}else{
+			$signupErrors['city'] = "Please enter a city";
+		}
 	}
 	// PASSWORD VALIDATION
     if(!isValid($password, 10, 128)){
@@ -87,30 +123,22 @@
 	}
 	
 	
-	// $usernameExists = $dao->userExists($userName);
-	// if($usernameExists){
-	// 	$signupErrors['userName'] = "A user with this username already exists";
-	// }
-	// $emailExists = $dao->userExistsByEmail($email);
-	// if($emailExists){
-	// 	$signupErrors['email'] = "A user with this email already exists";
-	// }
+	$usernameExists = $dao->userExists($username);
+	if($usernameExists){
+		echo "username exists";
+		$signupErrors['username'] = "A user with this handle already exists";
+	}
 
 	// REDIRECT
 	if(empty($signupErrors)){
 		echo "\nFINAL:" . $fName . $lName . $username . $birthday . $gender . $acceptingCommissions . $city . $country . $email . $password;
 		$dao->addUser($fName, $lName, $username, $birthday, $gender, $acceptingCommissions, $city, $country, $email, $password);
-		//header("Location: feed.html");
+		header("Location: feed.html");
 	} else {
 		$_SESSION['errors'] = $signupErrors;
 		$_SESSION['presets'] = array('username' => htmlspecialchars($username),
 										'email' => htmlspecialchars($email)) ;
-		foreach($signupErrors as &$value){
-			echo $value;
-		}
-		unset($signupErrors);
-		$signupErrors = array();
 
-		//header("Location: signup.php");
+		header("Location: signup.php");
 	}
 ?>

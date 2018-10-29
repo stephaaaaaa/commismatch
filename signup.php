@@ -35,7 +35,7 @@
 			<div align="left" class="signup_well col-lg-12">
 				<div align="left" class="well col-lg-6">
 					<!--First name-->
-					<div class="col-lg-6">
+					<div class="col-sm-8">
 						<label class="label">First Name</label>
 						<input type="text" name="firstName" class="form-control" maxLength="25" required
 							<?php
@@ -50,7 +50,7 @@
 						<?php } ?>
 					</div>
 					<!--Last name*/-->
-					<div class="col-lg-6">
+					<div class="col-sm-8">
 						<label class="label">Last Name</label>
 						<input type="text" name="lastName" class="form-control" maxLength="25" required
 						<?php
@@ -65,7 +65,7 @@
 						<?php } ?>
 					</div>
 					<!--Birthday-->
-					<div class="col-lg-6">
+					<div class="col-sm-6">
 						<label class="label">Birthday</label>
 						<input type="date" name="birthday" class="form-control" required>
 						<?php 
@@ -74,7 +74,7 @@
 						<?php } ?>
 					</div>
 					<!--Radio buttons-->
-					<div class="col-lg-12">
+					<div class="col-sm-12">
 						<label class="label">I am a:</label>
 						<div class="rad_btns">
 							<div>
@@ -86,10 +86,14 @@
 							<div>
 								<input type="radio" name="gender" value="other">Other
 							</div>
+							<?php 
+							if(isset($_SESSION['errors']['gender'])) { ?>
+							<p id="genderError" class="error"><?= $_SESSION['errors']['gender'] ?></p>
+						<?php } ?>
 						</div>
 					</div>
 					<!--Email-->
-					<div class="col-lg-8">
+					<div class="col-sm-8">
 						<label class="label">Email</label>
 						<input type="email" name="email" maxLength="50" class="form-control" required>
 						<?php 
@@ -98,12 +102,12 @@
 						<?php } ?>
 					</div>
 					<!--Handle-->
-					<div class="col-lg-8">
+					<div class="col-sm-8">
 						<label class="label">Username/Handle</label>
 						<input type="text" name="username" maxLength="25" class="form-control" required>
 						<?php 
-							if(isset($_SESSION['errors']['handle'])) { ?>
-							<p id="handleError" class="error"><?= $_SESSION['errors']['handle'] ?></p>
+							if(isset($_SESSION['errors']['username'])) { ?>
+							<p id="usernameError" class="error"><?= $_SESSION['errors']['username'] ?></p>
 						<?php } ?>
 					</div>
 					<!-- Accepting commissions? -->
@@ -117,20 +121,32 @@
 								<input type="radio" name="acceptingCommissions" value="No">No
 							</div>
 						</div>
-
+						<?php 
+							if(isset($_SESSION['errors']['acceptingCommissions'])) { ?>
+							<p id="commissionsError" class="error"><?= $_SESSION['errors']['acceptingCommission'] ?></p>
+						<?php } ?>
 					</div>
 					<!-- Location info -->
 					<div class="col-sm-5">
 						<label class="label">Country</label>
 						<input type="text" name="country" maxlength="25" class="form-control" required>
-						<!-- add handler -->
 					</div>
 					<div class="col-sm-5">
 						<label class="label">City</label>
 						<input type="text" name="city" maxlength="25" class="form-control" required>
 					</div>
+					<div>
+						<?php 
+							if(isset($_SESSION['errors']['country'])) { ?>
+							<p id="countryError" class="error"><?= $_SESSION['errors']['country'] ?></p>
+						<?php } ?>
+						<?php 
+							if(isset($_SESSION['errors']['city'])) { ?>
+							<p id="cityError" class="error"><?= $_SESSION['errors']['city'] ?></p>
+						<?php } ?>
+					</div>
 					<!--Password-->
-					<div class="col-lg-8">
+					<div class="col-sm-8">
 						<label class="label">Password</label>
 						<input type="password" name="password" minLength="10" class="form-control" required>
 						<?php 
@@ -147,18 +163,18 @@
 							<p id="confirmedPasswordError" class="error"><?= $_SESSION['errors']['confirmedPassword'] ?></p>
 						<?php } ?>
 					</div>
+					<!-- Signup button -->
+					<div class="col-sm-12">
+						<div class="col-sm-3">
+							<input type="submit" class="form-control signup_btn">
+						</div>
+					</div>
 
 					<?php if(isset($_SESSION['errors']['message'])){ ?>
 						<p> <span id="Error" class="error"><?= $_SESSION['errors']['message'] ?></span></p>
 					<?php 	} 
 						unset($_SESSION['errors']);
 					?>
-
-					<div class="col-sm-12">
-						<div class="col-sm-3">
-							<input type="submit" class="form-control signup_btn">
-						</div>
-					</div>
 
 					<div class="icon col-lg-12">
 						<div align="center">
