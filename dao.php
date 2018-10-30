@@ -74,6 +74,27 @@
             return false;
         }
 
+        public function passwordCorrect($handle, $password){
+            if($this->userExists($handle)){
+                $connection = $this->getConnection();
+                $statement = $connection->prepare("SELECT password FROM SiteUser WHERE handle = :handle");
+                // $statement->bindParam(":password", $password);
+                $statement->bindParam(":handle", $handle);
+                $statement->execute();
+                $resultsRow = $statement->fetch();
+
+                if(!$resultsRow){ // if the row is nonexistent
+                    return false;
+                }
+                $hashword = $resultsRow['password']; // hashed password
+
+                if($hashword == $password){
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public function validateUser($email, $password)
         {
             $connection = $this->getConnection();

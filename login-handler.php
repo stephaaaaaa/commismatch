@@ -1,7 +1,9 @@
 <?php
-    // initialize the dao w/require once
-
+	// initialize the dao w/require once
+	require_once("dao.php");
     session_start();
+
+	$dao = new Dao();
 
 	function isGoodPassword($password){
 		if(preg_match('[\W]', $password) && preg_match('/\\d/', $password) && preg_match("/([A-Z])/", $password)){
@@ -17,39 +19,28 @@
     // USERNAME VALIDATION
     if(strlen($loginUsername) < 1){
         $loginErrors['loginUsername'] = "Please type a username";
-    }
-    // do stuff for if the username exists in the database
+	}
+	if(!$dao->userExists($loginUsername)){ // does username exist in db?
+		$loginErrors['loginPassword'] = "Invalid username or password"; 
+	}
 
     // PASSWORD VALIDATION
     if(strlen($loginPassword) < 1){
         $loginErrors['loginPassword'] = "Please type a password"; 
-    }
-    // do stuff for if the password associated with the user matches
-	
-	
-	// $usernameExists = $dao->userExists($userName);
-	// if($usernameExists){
-	// 	$loginErrors['userName'] = "A user with this username already exists";
-	// }
-	// $emailExists = $dao->userExistsByEmail($email);
-	// if($emailExists){
-	// 	$loginErrors['email'] = "A user with this email already exists";
-	// }
+	}
+	if($dao->passwordCorrect($loginUsername, $loginPassword) == false){ // is password correct for user?
+		$loginErrors['loginPassword'] = "Invalid username or password";
+	}
 
 	// REDIRECT
 	if(empty($loginErrors)){
-		// $dao->addUser($email, $loginPassword, $userName);
 		header("Location: feed.html");
 	} else {
 		$_SESSION['errors'] = $loginErrors;
-		$_SESSION['presets'] = array('username' => htmlspecialchars(loginUsername),
-										'email' => htmlspecialchars($email)) ;
+		$_SESSION['presets'] = array('loginUsername' => htmlspecialchars($loginUsername));
 		foreach($loginErrors as &$value){
 			echo $value;
         }
-        // is this bad for getting rid of the errors??
-        unset($loginErrors);
-        $loginErrors = array();
 		header("Location: login.php");
 	}
 ?>

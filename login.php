@@ -37,7 +37,7 @@
 			<div align="center" class="login_signup_well col-lg-6">
 				<div align="left" class="well col-lg-6">
 					<div class="col-lg-12">
-						<label class="label">Username or Handle</label>
+						<label class="label">Username</label>
 						<input type="text" name="loginUsername" class="form-control"
 						>
 						<?php
@@ -56,11 +56,14 @@
 							<?php } 
 						?>
 					</div>
+					<!-- Unset errors -->
 					<?php if(isset($_SESSION['errors']['message'])){ ?>
 						<p> <span id="Error" class="error"><?= $_SESSION['errors']['message'] ?></span></p>
 					<?php 	} 
 						unset($_SESSION['errors']);
 					?>
+
+					<!-- Submit button -->
 					<div align="center" class="col-sm-6">
 						<button 
 							align="center" 

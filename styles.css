@@ -156,6 +156,10 @@ p {
 	border-color: #41B3A3;
 }
 
+.login_signup_well .error{
+	color:red;
+}
+
 .login_signup_well .well{
 	background-color: #FFFFFF;
 	border-color: #C38D9E;
