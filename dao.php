@@ -28,8 +28,6 @@
         {
             $user = $this->getUser($username); // check if there is already a user
             if(!$user){
-                // $birthday = strtotime($birthday);
-                // $birthday = date('Y-m-d',$birthday);
                 $connection = $this->getConnection();
                 $query = "INSERT INTO SiteUser(firstName, lastName, handle, birthday, gender, acceptingCommissions, city, country, email, password)
                             VALUES (:firstName, :lastName, :handle, :birthday, :gender, :acceptingCommissions, :city, :country, :email, :password)";
@@ -95,19 +93,31 @@
             return false;
         }
 
-        public function validateUser($email, $password)
+        public function validateUser($handle, $password)
         {
             $connection = $this->getConnection();
-            $statement = $connection->prepare("SELECT password FROM SiteUser WHERE email = :email");
+            $statement = $connection->prepare("SELECT password FROM SiteUser WHERE handle = :handle");
             
-            $statement->bindParam(':email', $email);
+            $statement->bindParam(':handle', $handle);
             $statement->execute();
             $row = $statement->fetch();
             if(!$row){
                 return false;
             }
-            $digest = $row['password'];
-            return password_verify($password, $digest);
+            $hashword = $row['password'];
+            if($password == $hashword){
+                return true;
+            }
+            return false;
+        }
+
+        public function getUserInfo($handle)
+        {
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT userID FROM SiteUser WHERE handle = :handle");
+            $statement->bindParam(":handle", $handle);
+            $statement->execute();
+            return $statement->fetch();
         }
     }
 

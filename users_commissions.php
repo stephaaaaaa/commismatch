@@ -1,3 +1,7 @@
+<?php
+	$thisPage="HOME";
+	include("navbar.php");
+?>
 <!DOCTYPE html>
 
 <!-- Initializer stuff -->
@@ -19,18 +23,6 @@
 <body>
 
 	<div class="col-lg-12">
-			<div id="banner" class="col-lg-12">
-				<a href="./feed.html" class="button">Home</a>
-				<a href="./commissions_tracker.html" class="button">Commissions Tracker</a>
-				<a href="./users_commissions.html" class="button">My Commissions</a>
-				<a href="./messages.html" class="button">Messages</a>
-				<span id="profile">
-						<a href="./user.html" class="button">My Profile</a>
-						<!-- user's profile image goes here -->
-						<img src="sample_profile_sm.png" alt="logo"/>
-						<a href="./landing.html" class="button">Log out</a>
-				</span>
-			</div>
 
 			<div class="col-lg-12">
 				<div align="center" id="user" class="col-lg-3">					

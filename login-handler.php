@@ -34,7 +34,14 @@
 
 	// REDIRECT
 	if(empty($loginErrors)){
-		header("Location: feed.html");
+		echo "no login errors";
+		if($dao->validateUser($loginUsername, $loginPassword)){
+			echo "inside validate user";
+			$_SESSION['access_granted'] = true;
+			$_SESSION['currentUser'] = $dao->getUserInfo($loginUsername);
+			session_regenerate_id(true);
+			header("Location: feed.php");
+		}
 	} else {
 		$_SESSION['errors'] = $loginErrors;
 		$_SESSION['presets'] = array('loginUsername' => htmlspecialchars($loginUsername));
