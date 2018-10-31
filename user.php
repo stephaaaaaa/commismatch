@@ -33,7 +33,7 @@
 					<!-- Location -->
 					<h5>Seoul, South Korea</h5>
 					<!-- Message Icon -->
-						<a href="./messages.html" class="button" style="z-index:100; position:relative;">
+						<a href="./messages.php" class="button" style="z-index:100; position:relative;">
 							<img src="letter.png">
 						</a>
 				</div>
