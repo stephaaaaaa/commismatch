@@ -3,6 +3,11 @@
 	src: url(./Fonts/quicksand-v7-latin-regular.woff);
 }
 
+.login_img{
+	margin-top:4%;
+	margin-left: 42.5%;
+}
+
 .error{
 	color:red;
 }

@@ -1,6 +1,7 @@
 <?php
 	// define variables and initialize with empty values
 	session_start();
+	$thisPage = "LOGIN";
 
 	$nameErr = "";
 	$name = "";
@@ -34,6 +35,9 @@
 
 	<form action="login-handler.php" method="POST">
 		<body>
+			<div>
+				<img class="login_img" src="logo_websize.png">
+			</div>
 			<div align="center" class="login_signup_well col-lg-6">
 				<div align="left" class="well col-lg-6">
 					<div class="col-lg-12">

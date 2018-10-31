@@ -110,10 +110,10 @@
             return false;
         }
 
-        public function getUserInfo($handle)
+        public function getUserHandle($handle)
         {
             $connection = $this->getConnection();
-            $statement = $connection->prepare("SELECT userID FROM SiteUser WHERE handle = :handle");
+            $statement = $connection->prepare("SELECT handle FROM SiteUser WHERE handle = :handle");
             $statement->bindParam(":handle", $handle);
             $statement->execute();
             return $statement->fetch();

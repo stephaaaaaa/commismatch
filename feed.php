@@ -1,6 +1,8 @@
 <?php
 	$thisPage="HOME";
 	include("navbar.php");
+	require_once("Dao.php");
+	$dao = new Dao();
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +29,7 @@
 	<div class="col-lg-12">
 		<div id="body" class="welcome col-lg-12">
 			<!-- Use the user first name, instead of "user" -->
-			<h1>Welcome, User!</h1>
+			<h1>Welcome, <?= $_SESSION['currentUser']['handle']?>!</h1>
 			<!-- Use actual followers + following -->
 			<h5>0 followers, 0 following</h5>
 

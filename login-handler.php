@@ -38,7 +38,8 @@
 		if($dao->validateUser($loginUsername, $loginPassword)){
 			echo "inside validate user";
 			$_SESSION['access_granted'] = true;
-			$_SESSION['currentUser'] = $dao->getUserInfo($loginUsername);
+			$_SESSION['currentUser'] = $dao->getUserHandle($loginUsername);
+			
 			session_regenerate_id(true);
 			header("Location: feed.php");
 		}
