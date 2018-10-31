@@ -1,11 +1,12 @@
 <?php
-    function isAccessGranted(){
+    function accessGranted(){
         if(isset($_SESSION['access_granted']) && ($_SESSION['access_granted'] === true)){
             return true;
         } else {
             return false;
         }
     }
+    
     function logoutUser()
     {
         session_unset();

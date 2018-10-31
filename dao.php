@@ -76,7 +76,6 @@
             if($this->userExists($handle)){
                 $connection = $this->getConnection();
                 $statement = $connection->prepare("SELECT password FROM SiteUser WHERE handle = :handle");
-                // $statement->bindParam(":password", $password);
                 $statement->bindParam(":handle", $handle);
                 $statement->execute();
                 $resultsRow = $statement->fetch();

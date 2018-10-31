@@ -4,7 +4,6 @@
         session_start();
     }
     require_once('sessionFunctions.php');
-
 ?>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,6 +23,6 @@
 	<span id="profile">
 		<a href="./user.php" class="button">My Profile</a>
 		<img src="sample_profile_sm.png" alt="logo"/> <!--User's profile pic-->
-		<a href="./landing.html" class="button">Log out</a>
+        <a href="./logout.php" class="button">Log out</a>
 	</span>
 </div>
