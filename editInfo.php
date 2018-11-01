@@ -25,7 +25,8 @@
 	<body>
 		<form method="POST" action="signup-handler.php">
 			<div align="left" class="edit_well col-lg-12">
-				<div align="left" class="well col-lg-6">
+                <h2>Edit Information</h2>
+                <div align="left" class="well col-lg-6">
 	
 					<!-- Accepting commissions? -->
 					<div class="col-sm-8">
@@ -60,6 +61,15 @@
 						<?php 
 							if(isset($_SESSION['errors']['city'])) { ?>
 							<p id="cityError" class="error"><?= $_SESSION['errors']['city'] ?></p>
+						<?php } ?>
+                    </div>
+                    <!--Email-->
+					<div class="col-sm-8">
+						<label class="label">Email</label>
+						<input type="email" name="email" maxLength="50" class="form-control" required>
+						<?php 
+							if(isset($_SESSION['errors']['email'])) { ?>
+							<p id="emailError" class="error"><?= $_SESSION['errors']['email'] ?></p>
 						<?php } ?>
 					</div>
 					<!--Password-->
