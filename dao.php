@@ -118,6 +118,40 @@
             $statement->execute();
             return $statement->fetch();
         }
+
+        public function getUserCity($handle){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT city FROM SiteUser WHERE handle = :handle");
+            $statement->bindParam(":handle", $handle);
+            $statement->execute();
+            $row = $statement->fetch();
+
+            return $row['city'];
+        }
+
+        public function getUserCountry($handle){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT country FROM SiteUser WHERE handle = :handle");
+            $statement->bindParam(":handle", $handle);
+            $statement->execute();
+            $row = $statement->fetch();
+
+            return $row['country'];
+        }
+
+        public function getArtistQuote($handle){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT quoteOrBio FROM SiteUser WHERE handle = :handle");
+            $statement->bindParam(":handle", $handle);
+            $statement->execute();
+            $row = $statement->fetch();
+
+            if($row['quoteOrBio'] == ""){
+                return "I'm a person of few words!";
+            }
+
+            return $row['quoteOrBio'];
+        }
     }
 
 ?>

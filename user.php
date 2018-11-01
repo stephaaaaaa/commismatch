@@ -1,6 +1,8 @@
 <?php
 	$thisPage="HOME";
 	include("navbar.php");
+	require_once("Dao.php");
+	$dao = new Dao();
 ?>
 
 <!DOCTYPE html>
@@ -29,19 +31,19 @@
 					<!-- User profile image, sized to 240x254, with 96 px -->
 					<img src="sample_profile.png" alt="Avatar">
 					<!-- User handle -->
-					<h3>@yumiii_03</h3>
+					<h3>@<?= $_SESSION['currentUser']['handle']?></h3>
 					<!-- Location -->
-					<h5>Seoul, South Korea</h5>
+					<h5><?=$dao->getUserCity($_SESSION['currentUser']['handle'])?>, <?=$dao->getUserCountry($_SESSION['currentUser']['handle'])?></h5>
 					<!-- Message Icon -->
 						<a href="./messages.php" class="button" style="z-index:100; position:relative;">
 							<img src="letter.png">
 						</a>
 				</div>
 				<div id="user_content" class="col-lg-9">
-					<h3>"Artist's quote"</h3>
-					<h5>Message regarding whether the user is accepting commissions, and if so, what kind</h5>
+					<h3>A note from the artist:</h3>
+					<h5>"<?=$dao->getArtistQuote($_SESSION['currentUser']['handle'])?>"</h5>
 					<!-- Actual follow count goes here -->
-					<h6>0 followers, 0 following</h6>
+					<!-- <h6>0 followers, 0 following</h6> -->
 					<div id="posts">
 						<h4>Posts</h4>
 						<div id="photos">
