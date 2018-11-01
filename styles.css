@@ -251,7 +251,7 @@ p {
 #user_content {
 	font-family: Quicksand;
 	margin-left: 30%;
-	margin-top: -30%;
+	margin-top: 10%;
 	max-width: 90%;
 	width: 70%;
     overflow-x: hidden;
@@ -307,7 +307,7 @@ p {
 
 #user #user_content #messages{
 	/* margin-top:30%; */
-	margin-bottom: 20%;
+	margin-bottom: 50%;
 }
 
 #user #user_content #messages #mail_tag{

@@ -175,6 +175,16 @@
 
             $statement->execute();
         }
+
+        public function getProfilePic($handle){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT profilePicture FROM SiteUser WHERE handle = :handle");
+            $statement->bindParam(":handle", $handle);
+
+            $statement->execute();
+            $row = $statement->fetch();
+            return $row['profilePicture'];
+        }
     }
 
 ?>

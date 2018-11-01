@@ -27,9 +27,9 @@
 
 	<div class="col-lg-12">
 			<div class="col-lg-12">
-				<div align="center" id="user" class="col-sm-3">
+				<div align="center" id="user" style="position:fixed;" class="col-sm-3">
 					<!-- User profile image, sized to 240x254, with 96 px -->
-					<img src="sample_profile.png" alt="Avatar">
+					<img src=<?= $_SESSION['currentUser']['picture']?> alt="Avatar">
 					<!-- User handle -->
 					<h3>@<?= $_SESSION['currentUser']['handle']?></h3>
 					<!-- Location -->
