@@ -21,7 +21,7 @@
 	<a href="./users_commissions.php" class="button">My Commissions</a>
 	<a href="./messages.php" class="button">Messages</a>
 	<span id="profile">
-		<a href="./user.php" class="button">My Profile</a>
+		<a href="./user.php" class="button"><?=$_SESSION['currentUser']['handle']?></a>
 		<img src="sample_profile_sm.png" alt="logo"/> <!--User's profile pic-->
         <a href="./logout.php" class="button">Log out</a>
 	</span>

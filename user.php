@@ -35,7 +35,7 @@
 					<!-- Location -->
 					<h5><?=$dao->getUserCity($_SESSION['currentUser']['handle'])?>, <?=$dao->getUserCountry($_SESSION['currentUser']['handle'])?></h5>
 					<!-- Message Icon -->
-						<a href="./messages.php" class="button" style="z-index:100; position:relative;">
+						<a href="./messages.php" class="button" style="z-index:40; position:relative;">
 							<img src="letter.png">
 						</a>
 				</div>
@@ -44,10 +44,11 @@
 					<h5>"<?=$dao->getArtistQuote($_SESSION['currentUser']['handle'])?>"</h5>
 					<!-- Actual follow count goes here -->
 					<!-- <h6>0 followers, 0 following</h6> -->
-					<a	href="./editInfo.php" class="button" style="z-index:120; position:relative;">
+					<a	href="./editInfo.php" class="button" style="z-index:40; position:relative;">
 							<img src="editIcon.png">
 					</a>
-					<a	href="./addPost.php" >
+					<a	href="./addPost.php" class="button" style="z-index:40; position:relative;">
+							<img src="plus.png">
 					</a>
 
 					<div id="posts">
