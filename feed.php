@@ -30,7 +30,7 @@
 		<div id="body" class="welcome col-lg-12">
 			<h1>Welcome, <?= $_SESSION['currentUser']['handle']?>!</h1>
 			<!-- Use actual followers + following -->
-			<!-- <h5>0 followers, 0 following</h5> Should I even? :( -->
+			<h5></h5>
 
 			<h2>Popular Artists</h2>
 			
