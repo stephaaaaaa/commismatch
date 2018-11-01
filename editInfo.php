@@ -23,11 +23,13 @@
 	<!-- End initializer stuff -->
 
 	<body>
-		<form method="POST" action="signup-handler.php">
+		<form method="POST" action="editInfoHandler.php" enctype="multipart/form-data">
 			<div align="left" class="edit_well col-lg-12">
                 <h2>Edit Information</h2>
                 <div align="left" class="well col-lg-6">
-	
+                    <div class="col-sm-8">
+                        <input type="file" name="upload">
+                    </div>
 					<!-- Accepting commissions? -->
 					<div class="col-sm-8">
 						<label class="label">Will you be accepting commissions?</label>
@@ -48,7 +50,7 @@
 					<div class="col-sm-5">
 						<label class="label">Country</label>
 						<input type="text" name="country" maxlength="25" class="form-control" required>
-					</div>
+                    </div>
 					<div class="col-sm-5">
 						<label class="label">City</label>
 						<input type="text" name="city" maxlength="25" class="form-control" required>
@@ -63,6 +65,16 @@
 							<p id="cityError" class="error"><?= $_SESSION['errors']['city'] ?></p>
 						<?php } ?>
                     </div>
+                    <div class="col-sm-8">
+                        <div>
+                            <label class="label">Note</label>
+                        </div>
+                        <textarea class="form-control noteField" name="quoteorBio" rows="4" maxlength="256"></textArea>
+                    </div>
+                    <?php 
+                        if(isset($_SESSION['errors']['quoteOrBio'])) { ?>
+                        <p id="commissionsError" class="error"><?= $_SESSION['errors']['acceptingCommission'] ?></p>
+					<?php } ?>
                     <!--Email-->
 					<div class="col-sm-8">
 						<label class="label">Email</label>
@@ -102,12 +114,6 @@
 					<?php 	} 
 						unset($_SESSION['errors']);
 					?>
-
-					<!-- <div class="icon col-lg-12">
-						<div align="center">
-							<img src="logo_signup.png" alt="logo" />
-						</div>
-					</div> -->
 				</div>
 		</form>
 	</body>

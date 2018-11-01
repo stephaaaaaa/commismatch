@@ -132,22 +132,6 @@ p {
 	font-family: Quicksand;
 }
 
-.edit_well{
-	margin-left:2%;
-	margin-top:10%;
-	position:absolute;
-}
-
-.edit_well .well{
-	background-color: #FFFFFF;
-	border-color: #C38D9E;
-	border-width: 3px;
-}
-
-.edit_well .label{
-	color:black;
-}
-
 .signup_well{
 	position:absolute; 
 	top:20%; 
@@ -348,5 +332,29 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 
+/* EDIT PAGE */
+.edit_well{
+	margin-left:2%;
+	margin-top:7%;
+	position:absolute;
+}
+
+.edit_well div{
+	margin-bottom: 1%;
+}
+
+.edit_well .well{
+	background-color: #FFFFFF;
+	border-color: #C38D9E;
+	border-width: 3px;
+}
+
+.edit_well .label{
+	color:black;
+}
+
+.edit_well .noteField{
+	resize:none;
+}
 
 

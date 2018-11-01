@@ -40,7 +40,8 @@
 		}
 		return false;
 	}
-	
+    
+    $handle = $_SESSION['currentUser']['handle'];
     $email = htmlspecialchars($_POST['email']);
 	$password = htmlspecialchars($_POST['password']);
     $confirmedPassword = htmlspecialchars($_POST['confirmedPassword']);
@@ -50,7 +51,8 @@
 		$acceptingCommissions = '0';
 	}
 	$country = htmlspecialchars($_POST['country']);
-	$city = htmlspecialchars($_POST['city']);
+    $city = htmlspecialchars($_POST['city']);
+    $quoteOrBio = htmlspecialchars($_POST['quoteorBio']);
 	$valid = true;
 	$editErrors = array();
 
@@ -80,7 +82,36 @@
 		}else{
 			$editErrors['city'] = "Please enter a city";
 		}
-	}
+    }
+    // BIO VALIDATION
+    if(!isValid($quoteOrBio, 0, 256)){
+        $editErrors['quoteOrBio'] = "Note is over the character limit.";
+    }
+
+    if(isset($_FILES['upload']))
+	{
+        echo "uploading files   ";
+
+		// file name, type, size, temporary name
+		$file_name = $_FILES['upload']['name'];
+		$file_type = $_FILES['upload']['type'];
+		$file_tmp_name = $_FILES['upload']['tmp_name'];
+		$file_size = $_FILES['upload']['size'];
+ 
+		// target directory
+		$target_dir = "uploads/";
+	
+		// uploding file
+		if(move_uploaded_file($file_tmp_name,$target_dir.$file_name))
+		{
+            $dao->uploadProfilePic($handle, "'.$target_dir.$file_name.'");
+		}
+		else
+		{
+            $editErrors['profilePic'] = "File could not be uploaded."
+        }
+    }
+    
 	// PASSWORD VALIDATION
     if(!isValid($password, 10, 128)){
 		$editErrors['password'] = "Password length must be at least 10 characters long.";
@@ -88,18 +119,19 @@
 		$editErrors['confirmedPassword'] = "Passwords do not match";
     } else if(!isGoodPassword($password)){
 		$editErrors['password'] = "Password must contain at least 1 number, 1 special character, and 1 capital letter.";
-	}
+    }
 
 	// REDIRECT
 	if(empty($editErrors)){
         // create a functionality to edit the current user's info
         //$dao->addUser($fName, $lName, $username, $birthday, $gender, $acceptingCommissions, $city, $country, $email, $password);
-		header("Location: user.php");
+        $dao->editUser($handle, $acceptingCommissions, $city, $country, $quoteOrBio, $email, $password);
+		//header("Location: user.php");
 	} else {
 		$_SESSION['errors'] = $editErrors;
 		$_SESSION['presets'] = array('username' => htmlspecialchars($username),
 										'email' => htmlspecialchars($email)) ;
 
-		header("Location: signup.php");
+		//header("Location: editInfo.php");
 	}
 ?>

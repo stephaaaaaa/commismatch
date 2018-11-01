@@ -152,6 +152,29 @@
 
             return $row['quoteOrBio'];
         }
+
+        public function editUser($handle, $acceptingCommissions, $city, $country, $quoteOrBio, $email, $password){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("UPDATE SiteUser SET acceptingCommissions = :acceptingCommissions, city = :city, 
+            country = :country, quoteOrBio = :quoteOrBio, email = :email, password = :password WHERE handle = :handle");
+            $statement->bindParam(":acceptingCommissions", $acceptingCommissions);
+            $statement->bindParam(":city", $city);
+            $statement->bindParam(":country", $country);
+            $statement->bindParam(":quoteOrBio", $quoteOrBio);
+            $statement->bindParam(":email", $email);
+            $statement->bindParam(":password", $password);
+            $statement->bindParam(":handle", $handle);
+            $statement->execute();
+        }
+
+        public function uploadProfilePic($handle, $filepath){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("UPDATE SiteUser SET profilePicture = :filepath WHERE handle = :handle");
+            $statement->bindParam(":filepath", $filepath);
+            $statement->bindParam(":handle", $handle);
+
+            $statement->execute();
+        }
     }
 
 ?>
