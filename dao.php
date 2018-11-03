@@ -195,12 +195,12 @@
             $userID = $row['userID'];
             // upload to post table
             $today = date("Y/m/d");
-            $statement = $connection->prepare("INSERT INTO TABLE Post 
-                VALUES (:today, :caption, :filepath, $_SESSION['currentUser']['handle']) ");
+            $statement = $connection->prepare("INSERT INTO TABLE Post VALUES (:today, :caption, :filepath, :handle)");
             $statement->bindParam(":today", $today);
             $statement->bindParam(":caption", $caption);
             $statement->bindParam(":filepath", $filepath);
             $statement->bindParam(":handle", $handle);
+            $statement->execute();
         }
     }
 
