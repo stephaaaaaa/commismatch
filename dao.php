@@ -185,6 +185,23 @@
             $row = $statement->fetch();
             return $row['profilePicture'];
         }
+
+        public function uploadPost($handle, $filepath, $caption){
+            $connection = $this->getConnection();
+            // get the id of the user
+            $statement = $connection->prepare("SELECT userID FROM SiteUser WHERE handle = :handle");
+            $statement->execute();
+            $row = $statement->fetch();
+            $userID = $row['userID'];
+            // upload to post table
+            $today = date("Y/m/d");
+            $statement = $connection->prepare("INSERT INTO TABLE Post 
+                VALUES (:today, :caption, :filepath, $_SESSION['currentUser']['handle']) ");
+            $statement->bindParam(":today", $today);
+            $statement->bindParam(":caption", $caption);
+            $statement->bindParam(":filepath", $filepath);
+            $statement->bindParam(":handle", $handle);
+        }
     }
 
 ?>

@@ -5,7 +5,6 @@
 	$dao = new Dao();
 ?>
 
-<!DOCTYPE html>
 
 <!DOCTYPE html>
 <!-- Initializer stuff -->
@@ -64,7 +63,8 @@
 							if(isset($_SESSION['errors']['city'])) { ?>
 							<p id="cityError" class="error"><?= $_SESSION['errors']['city'] ?></p>
 						<?php } ?>
-                    </div>
+					</div>
+					<!-- Note -->
                     <div class="col-sm-8">
                         <div>
                             <label class="label">Note</label>
