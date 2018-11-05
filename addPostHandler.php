@@ -5,6 +5,15 @@
 	
 	$dao = new Dao();
 
+    function isValid($raw, $minLength, $maxLength){
+        $trimmed = trim($raw);
+        $isValid = false;
+        if(strlen($trimmed) >= $minLength && strlen($trimmed) <= $maxLength){
+            $isValid = true;
+        }
+		return $isValid;
+	}
+
     function resize_image($file, $w, $h, $crop=FALSE) {
         list($width, $height) = getimagesize($file);
         $r = $width / $height;
@@ -57,7 +66,7 @@
 		// uploding file
 		if(move_uploaded_file($file_tmp_name,$target_dir.$file_name))
 		{
-            $dao->uploadPost($handle, "$target_dir$file_name", $caption);
+            $dao->uploadPost($_SESSION['currentUser']['handle'], "$target_dir$file_name", $caption);
 
 		}
 		else

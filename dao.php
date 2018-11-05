@@ -1,5 +1,6 @@
 <?php
     require_once("./config.php");
+    date_default_timezone_set('America/Boise');
 
     class Dao{
         // PDO connection using the cleardb url connection
@@ -186,21 +187,49 @@
             return $row['profilePicture'];
         }
 
-        public function uploadPost($handle, $filepath, $caption){
+        public function getUserIDFromHandle($handle){
             $connection = $this->getConnection();
-            // get the id of the user
             $statement = $connection->prepare("SELECT userID FROM SiteUser WHERE handle = :handle");
+            $statement->bindParam(":handle", $handle);
             $statement->execute();
             $row = $statement->fetch();
             $userID = $row['userID'];
+
+            return $userID;
+        }
+
+        public function uploadPost($handle, $filepath, $caption){
+            $connection = $this->getConnection();
+            // get the id of the user
+            // $statement = $connection->prepare("SELECT userID FROM SiteUser WHERE handle = :handle");
+            // $statement->execute();
+            // $row = $statement->fetch();
+            // $userID = $row['userID'];
+            $userID = $this->getUserIDFromHandle($handle);
             // upload to post table
-            $today = date("Y/m/d");
-            $statement = $connection->prepare("INSERT INTO TABLE Post VALUES (:today, :caption, :filepath, :handle)");
+            $today = date("Y/m/d H:i:s");
+            $statement = $connection->prepare("INSERT INTO Post VALUES (NULL, :today, :caption, :userID, :filepath)");
             $statement->bindParam(":today", $today);
             $statement->bindParam(":caption", $caption);
+            $statement->bindParam(":userID", $userID);
             $statement->bindParam(":filepath", $filepath);
-            $statement->bindParam(":handle", $handle);
             $statement->execute();
+        }
+
+        public function retrievePhotos($handle){
+            $connection = $this->getConnection();
+            $userID = $this->getUserIDFromHandle($handle);
+            $statement = $connection->prepare("SELECT imageFilePath FROM Post WHERE author = :userID");
+            $statement->bindParam(":userID", $userID);
+            $statement->execute();
+            $rowArray = $statement->fetch();
+
+            foreach($rowArray as $value){
+                echo "<img src=\"".$value."\">";
+            }
+
+
+            //echo print_r($statement->fetch());
         }
     }
 
