@@ -224,8 +224,11 @@
             $statement->execute();
             $rowArray = $statement->fetch();
 
-            foreach($rowArray as $value){
-                echo "<img src=\"".$value."\">";
+            if(!empty($rowArray)){
+                foreach($rowArray as $key=>$value){
+                    echo $value;
+                    // echo "</br><img src=\"".$value."\">";
+                }
             }
 
 

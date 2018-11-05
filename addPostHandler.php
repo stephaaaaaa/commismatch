@@ -34,7 +34,7 @@
                 $newwidth = $w;
             }
         }
-        $src = imagecreatefromjpeg($file);
+        $src = imagecreatefrompng($file);
         $dst = imagecreatetruecolor($newwidth, $newheight);
         imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
     
@@ -64,8 +64,9 @@
 		$target_dir = "uploads/";
 	
 		// uploding file
-		if(move_uploaded_file($file_tmp_name,$target_dir.$file_name))
+        if(move_uploaded_file($file_tmp_name,$target_dir.$file_name))
 		{
+            // resize_image("$target_dir$file_name", 224, 224);
             $dao->uploadPost($_SESSION['currentUser']['handle'], "$target_dir$file_name", $caption);
 
 		}

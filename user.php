@@ -38,29 +38,26 @@
 						<a href="./messages.php" class="button" style="z-index:40; position:relative;">
 							<img src="letter.png">
 						</a>
-					<div>
-						<!-- Edit Icon -->
-						<a	href="./editInfo.php" class="button" style="z-index:40; position:relative;">
-								<img src="editIcon.png">
-						</a>
-						<!-- Add Post -->
-						<a	href="./addPost.php" class="button" style="z-index:40; position:relative;">
-								<img src="plus.png">
-						</a>
-					</div>
 				</div>
 				<div id="user_content" class="col-lg-9">
 					<h3>A note from the artist:</h3>
 					<h5>"<?=$dao->getArtistQuote($_SESSION['currentUser']['handle'])?>"</h5>
 					<!-- Actual follow count goes here -->
 					<!-- <h6>0 followers, 0 following</h6> -->
+					<a	href="./editInfo.php" class="button" style="z-index:40; position:relative;">
+							<img src="editIcon.png">
+					</a>
+					<a	href="./addPost.php" class="button" style="z-index:40; position:relative;">
+							<img src="plus.png">
+					</a>
+
 					<div id="posts">
 						<h4>Posts</h4>
 						<div id="photos">
 							<!-- 130x130, 90px -->
 							<div id="photo">
 								<?=$dao->retrievePhotos($_SESSION['currentUser']['handle']);?>
-								<img src="yumis_cells.png" alt="firstPost"> <!--224 x 224, 92 res-->
+								<!-- <img src="yumis_cells.png" alt="firstPost"> 
 								<img src="yumis_cells.png" alt="firstPost">
 								<img src="yumis_cells.png" alt="firstPost">
 								<img src="yumis_cells.png" alt="firstPost">
@@ -69,7 +66,7 @@
 								<img src="yumis_cells.png" alt="firstPost">
 								<img src="yumis_cells.png" alt="firstPost">
 								<img src="yumis_cells.png" alt="firstPost">
-								<img src="yumis_cells.png" alt="firstPost">
+								<img src="yumis_cells.png" alt="firstPost"> -->
 							</div>
 												
 						</div>
