@@ -29,21 +29,21 @@
 			<div class="col-lg-12">
 				<div align="center" id="user" style="position:fixed;" class="col-sm-3">
 					<!-- User profile image, sized to 240x254, with 96 px -->
-					<img src=<?= $_SESSION['currentUser']['picture']?> alt="Avatar">
+					<img src=<?= $_SESSION['currentUser']['picture']?> id="profile_pic" alt="Avatar">
 					<!-- User handle -->
 					<h3>@<?= $_SESSION['currentUser']['handle']?></h3>
 					<!-- Location -->
 					<h5><?=$dao->getUserCity($_SESSION['currentUser']['handle'])?>, <?=$dao->getUserCountry($_SESSION['currentUser']['handle'])?></h5>
-					<!-- Message Icon -->
-						<a href="./messages.php" class="button" style="z-index:40; position:relative;">
-							<img src="letter.png">
-						</a>
 				</div>
 				<div id="user_content" class="col-lg-9">
 					<h3>A note from the artist:</h3>
 					<h5>"<?=$dao->getArtistQuote($_SESSION['currentUser']['handle'])?>"</h5>
 					<!-- Actual follow count goes here -->
 					<!-- <h6>0 followers, 0 following</h6> -->
+					<!-- Message Icon -->
+					<a href="./messages.php" class="button" style="z-index:100; position:relative;">
+						<img src="letter.png">
+					</a>
 					<a	href="./editInfo.php" class="button" style="z-index:40; position:relative;">
 							<img src="editIcon.png">
 					</a>

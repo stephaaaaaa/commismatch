@@ -241,6 +241,11 @@ p {
 	margin-left: 1.5%;
 }
 
+#user #profile_pic{
+	height:224px;
+	width:224px;
+}
+
 #user #letter_btn{
 	background: none;
 	border: none;
@@ -271,6 +276,11 @@ p {
 	margin: 2px 2px 2px 2px;
 	padding-bottom: 2px;
 	padding: 2px 2px 2px 2px;
+}
+
+#user_content #posts #photos #photo img{
+	height:224px;
+	width:224px;
 }
 
 /* End user */

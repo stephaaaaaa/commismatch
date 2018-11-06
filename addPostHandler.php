@@ -13,33 +13,6 @@
         }
 		return $isValid;
 	}
-
-    function resize_image($file, $w, $h, $crop=FALSE) {
-        list($width, $height) = getimagesize($file);
-        $r = $width / $height;
-        if ($crop) {
-            if ($width > $height) {
-                $width = ceil($width-($width*abs($r-$w/$h)));
-            } else {
-                $height = ceil($height-($height*abs($r-$w/$h)));
-            }
-            $newwidth = $w;
-            $newheight = $h;
-        } else {
-            if ($w/$h > $r) {
-                $newwidth = $h*$r;
-                $newheight = $h;
-            } else {
-                $newheight = $w/$r;
-                $newwidth = $w;
-            }
-        }
-        $src = imagecreatefrompng($file);
-        $dst = imagecreatetruecolor($newwidth, $newheight);
-        imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
-    
-        return $dst;
-    }
     
     $caption = htmlspecialchars($_POST['caption']);
 	$valid = true;
@@ -66,9 +39,7 @@
 		// uploding file
         if(move_uploaded_file($file_tmp_name,$target_dir.$file_name))
 		{
-            // resize_image("$target_dir$file_name", 224, 224);
             $dao->uploadPost($_SESSION['currentUser']['handle'], "$target_dir$file_name", $caption);
-
 		}
 		else
 		{
@@ -84,6 +55,6 @@
 		$_SESSION['presets'] = array('username' => htmlspecialchars($username),
 										'email' => htmlspecialchars($email)) ;
 
-		header("Location: addPostHandler.php");
+		header("Location: addPost.php");
 	}
 ?>
