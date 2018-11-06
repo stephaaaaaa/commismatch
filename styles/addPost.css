@@ -1,0 +1,32 @@
+@font-face {
+	font-family: "Quicksand";
+	src: url(./Fonts/quicksand-v7-latin-regular.woff);
+}
+
+/* EDIT PAGE */
+.edit_well{
+	font-family: "Quicksand";
+	max-width: 94%;
+	margin-left:5%;
+	margin-top:7%;
+	position:absolute;
+	margin-bottom: 5%;
+}
+
+.edit_well div{
+	margin-bottom: 1%;
+}
+
+.edit_well .well{
+	background-color: #FFFFFF;
+	border-color: #C38D9E;
+	border-width: 3px;
+}
+
+.edit_well .label{
+	color:black;
+}
+
+.edit_well .noteField{
+	resize:none;
+}

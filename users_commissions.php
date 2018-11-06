@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="./styles/users_commissions.css">
   <link rel="icon"
       type="image/png"
       href="favicon.ico">
@@ -22,8 +22,7 @@
 
 <body>
 
-	<div class="col-lg-12">
-
+	<div class="col-lg-12" id="body">
 			<div class="col-lg-12">
 				<div align="center" id="user" class="col-lg-3">					
 					<h1>Your Commissions</h1>

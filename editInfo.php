@@ -14,7 +14,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<link rel="stylesheet" href="styles.css">
+		<link rel="stylesheet" href="./styles/editInfo.css">
 		<link rel="icon" type="image/png" href="favicon.ico">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -26,6 +26,9 @@
 			<div align="left" class="edit_well col-lg-12">
                 <h2>Edit Information</h2>
                 <div align="left" class="well col-lg-6">
+					<div>
+						<label class="label">Change profile picture:</label>
+					</div>
                     <div class="col-sm-8">
                         <input type="file" name="upload">
                     </div>

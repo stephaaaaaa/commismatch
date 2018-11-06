@@ -1,0 +1,43 @@
+@font-face {
+	font-family: "Quicksand";
+	src: url(./Fonts/quicksand-v7-latin-regular.woff);
+}
+
+#body{
+	font-family: "Quicksand";
+	margin-top:10%;
+	font-family: "Quicksand";
+}
+
+#body #user_content #commissions{
+	margin-top:5%;
+	margin-left:5%;
+	margin-bottom: 20%;
+}
+
+#user_content #commissions h4{
+	margin-bottom: 2%;
+	margin-top: 8%;
+}
+
+#user_content #commissions #commissions_post{
+	margin: 2% 0% 2% 2%;    
+	width: 50%;             
+}                           
+                            
+#user_content #commissions #commissions_post #image{
+	margin-bottom: 15%;     
+}                           
+                            
+#user_content #commissions #commissions_post #description{
+	margin-left: 30%;
+	margin-top: -250px;
+	position: absolute;
+	/* padding-bottom: -70%; */
+}
+
+.footer{
+	margin-left:2%;
+	margin-bottom:1%;
+	font-family: "Quicksand";
+}

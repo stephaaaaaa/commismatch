@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="./styles/messages.css">
   <link rel="icon"
       type="image/png"
       href="favicon.ico">
@@ -24,7 +24,7 @@
 
 	<div class="col-lg-12">
 
-			<div class="col-lg-12">
+			<div class="col-lg-12" id="body">
 				<div align="center" id="user" class="col-lg-3">					
 					<h1>Your Messages</h1>
 					<!-- Number of unread -->
@@ -61,7 +61,7 @@
 					</div>
 				</div>
 			</div>
-	</div>
+		</div>
 		<div class="footer">
 			<h5>Stephanie Labastida. 2018</h5>
 		</div>

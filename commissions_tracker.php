@@ -12,7 +12,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="./styles/users_commissions.css">
   <link rel="icon"
       type="image/png"
       href="favicon.ico">
@@ -23,10 +23,9 @@
 
 <body>
 
-	<div class="col-lg-12">
-
+	<div class="col-lg-12" id="body">
 			<div class="col-lg-12">
-				<div align="center" id="user" class="col-lg-3">					<!-- User handle -->
+				<div align="center" id="user" class="col-lg-3">
 					<h1>Commissions Tracker</h1>
 					<!-- Number of commissions in progress -->
 					<h4>2 commission in progress</h4>
@@ -37,7 +36,7 @@
 					<div id="commissions">
 						<h4>Current Commissions</h4>
 							<!-- 130x130, 90px -->
-							<div id="commissions_post">
+							<div id="current">
 								<img id="image" src="art1.png" alt="firstCommission">
 								<div id="description">
 									<h5>"Statues Part 1", Painting</h5>

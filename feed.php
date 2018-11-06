@@ -15,7 +15,7 @@
 
 <!-- Bootstrap and other scripts -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="styles.css"> 
+  <link rel="stylesheet" href="./styles/feed.css"> 
   <link rel="icon" 
       type="image/png" 
       href="favicon.ico">

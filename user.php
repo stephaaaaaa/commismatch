@@ -14,7 +14,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="styles.css"> 
+  <link rel="stylesheet" href="./styles/user.css"> 
   <link rel="icon" 
       type="image/png" 
       href="favicon.ico">
@@ -34,20 +34,20 @@
 					<h3>@<?= $_SESSION['currentUser']['handle']?></h3>
 					<!-- Location -->
 					<h5><?=$dao->getUserCity($_SESSION['currentUser']['handle'])?>, <?=$dao->getUserCountry($_SESSION['currentUser']['handle'])?></h5>
+					<!-- Accepting Status -->
+					<h5><?=$dao->getAcceptingStatus($_SESSION['currentUser']['handle'])?></h5>
 				</div>
 				<div id="user_content" class="col-lg-9">
 					<h3>A note from the artist:</h3>
 					<h5>"<?=$dao->getArtistQuote($_SESSION['currentUser']['handle'])?>"</h5>
-					<!-- Actual follow count goes here -->
-					<!-- <h6>0 followers, 0 following</h6> -->
 					<!-- Message Icon -->
-					<a href="./messages.php" class="button" style="z-index:100; position:relative;">
+					<a href="./messages.php" class="button" id="icon">
 						<img src="letter.png">
 					</a>
-					<a	href="./editInfo.php" class="button" style="z-index:40; position:relative;">
+					<a	href="./editInfo.php" class="button" id="icon">
 							<img src="editIcon.png">
 					</a>
-					<a	href="./addPost.php" class="button" style="z-index:40; position:relative;">
+					<a	href="./addPost.php" class="button" id="icon">
 							<img src="plus.png">
 					</a>
 
@@ -57,16 +57,6 @@
 							<!-- 130x130, 90px -->
 							<div id="photo">
 								<?=$dao->retrievePhotos($_SESSION['currentUser']['handle']);?>
-								<!-- <img src="yumis_cells.png" alt="firstPost"> 
-								<img src="yumis_cells.png" alt="firstPost">
-								<img src="yumis_cells.png" alt="firstPost">
-								<img src="yumis_cells.png" alt="firstPost">
-								<img src="yumis_cells.png" alt="firstPost">
-								<img src="yumis_cells.png" alt="firstPost">
-								<img src="yumis_cells.png" alt="firstPost">
-								<img src="yumis_cells.png" alt="firstPost">
-								<img src="yumis_cells.png" alt="firstPost">
-								<img src="yumis_cells.png" alt="firstPost"> -->
 							</div>
 												
 						</div>

@@ -230,6 +230,20 @@
                 }
             }
         }
+
+        public function getAcceptingStatus($handle){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT acceptingCommissions FROM SiteUser WHERE handle = :handle");
+            $statement->bindParam(":handle", $handle);
+            $statement->execute();
+            $row = $statement->fetch();
+
+            if($row['acceptingCommissions'] == 0){
+                return "Currently not accepting commissions";
+            }else{
+                return "Message me to request a commission!";
+            }
+        }
     }
 
 ?>
