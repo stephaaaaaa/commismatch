@@ -36,7 +36,7 @@
 						<h4>Incomplete Commissions</h4>
 							<!-- 130x130, 90px -->
 							<div id="commissions_post">
-								<img id="image" src="yumis_cells.png" alt="inProg1">
+								<img id="image" src="./logos_icons/yumis_cells.png" alt="inProg1">
 								<div id="description">
 									<h5>"Yumi's Cells", Print</h5>
 									<h6>Commissioned by @hhinrichsart</h6>
@@ -46,7 +46,7 @@
 						<h4>Completed Commissions</h4>
 							<!-- If no past commissions, blank -->
 							<div id="commissions_post">
-								<img id="image" src="yumis_cells.png" alt="completed1">
+								<img id="image" src="./logos_icons/yumis_cells.png" alt="completed1">
 								<div id="description">
 									<h5>"Yumi's Cells", Print</h5>
 									<h6>Commissioned by @picolo</h6>

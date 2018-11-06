@@ -37,13 +37,13 @@
 						<h4>Current Commissions</h4>
 							<!-- 130x130, 90px -->
 							<div id="current">
-								<img id="image" src="art1.png" alt="firstCommission">
+								<img id="image" src="./logos_icons/art1.png" alt="firstCommission">
 								<div id="description">
 									<h5>"Statues Part 1", Painting</h5>
 									<h6>By @hhinrichsart</h6>
 									<h6>Delivery date: 10-12-2018</h6>
 								</div>
-								<img id="image" src="art3.png" alt="secondCommission">
+								<img id="image" src="./logos_icons/art3.png" alt="secondCommission">
 								<div id="description">
 									<h5>"Witch", Shirt</h5>
 									<h6>By @jacquelindeleon</h6>

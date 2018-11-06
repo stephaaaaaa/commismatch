@@ -42,13 +42,13 @@
 					<h5>"<?=$dao->getArtistQuote($_SESSION['currentUser']['handle'])?>"</h5>
 					<!-- Message Icon -->
 					<a href="./messages.php" class="button" id="icon">
-						<img src="letter.png">
+						<img src="./logos_icons/letter.png">
 					</a>
 					<a	href="./editInfo.php" class="button" id="icon">
-							<img src="editIcon.png">
+							<img src="./logos_icons/editIcon.png">
 					</a>
 					<a	href="./addPost.php" class="button" id="icon">
-							<img src="plus.png">
+							<img src="./logos_icons/plus.png">
 					</a>
 
 					<div id="posts">

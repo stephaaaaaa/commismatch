@@ -26,7 +26,7 @@
 	<a href="./messages.php" class="button">Messages</a>
 	<span id="profile">
 		<a href="./user.php" class="button"><?=$_SESSION['currentUser']['handle']?></a>
-		<img src="home.png" alt="logo"/> <!--User's profile pic-->
+		<img src="./logos_icons/home.png" alt="logo"/> <!--User's profile pic-->
         <a href="./logout.php" class="button">Log out</a>
 	</span>
 </div>

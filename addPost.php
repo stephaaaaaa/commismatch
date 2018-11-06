@@ -25,6 +25,7 @@
 			<div align="left" class="edit_well col-lg-12">
                 <h2>Upload Post</h2>
                 <div align="left" class="well col-lg-6">
+					<h4>Please keep image size at 224x224 for best quality!</h4>
                     <!-- File upload link -->
                     <div class="col-sm-8">
                         <input type="file" name="upload">
