@@ -222,17 +222,13 @@
             $statement = $connection->prepare("SELECT imageFilePath FROM Post WHERE author = :userID");
             $statement->bindParam(":userID", $userID);
             $statement->execute();
-            $rowArray = $statement->fetch();
+            $rowArray = $statement->fetchAll(PDO::FETCH_COLUMN);
 
             if(!empty($rowArray)){
                 foreach($rowArray as $key=>$value){
-                    echo $value;
-                    // echo "</br><img src=\"".$value."\">";
+                    echo "<img src=\"".$value."\">";
                 }
             }
-
-
-            //echo print_r($statement->fetch());
         }
     }
 
