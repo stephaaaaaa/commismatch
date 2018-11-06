@@ -1,6 +1,12 @@
 <?php
-	$thisPage="HOME";
 	include("navbar.php");
+	
+	// if($_SESSION['currentUser'] == ""){
+	// 	echo "</br></br></br></br></br></br>".$_SESSION['currentUser'];
+	// 	header("Location: landing.html");
+	// }
+
+	$thisPage="HOME";
 	require_once("Dao.php");
 	$dao = new Dao();
 ?>

@@ -1,9 +1,13 @@
 <?php
-
     if(session_status() === PHP_SESSION_NONE){
         session_start();
     }
+    
     require_once('sessionFunctions.php');
+    if($_SESSION['currentUser'] == ""){
+        echo "</br></br></br></br></br></br>".$_SESSION['currentUser'];
+        header("Location: landing.html");
+    }
 ?>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">

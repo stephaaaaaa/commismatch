@@ -36,7 +36,9 @@
 	<form action="login-handler.php" method="POST">
 		<body>
 			<div>
-				<img class="login_img" src="logo_websize.png">
+				<a href="./landing.html">
+					<img class="login_img" src="logo_websize.png">
+				</a>
 			</div>
 			<div align="center" class="login_signup_well col-lg-6">
 				<div align="left" class="well col-lg-6">

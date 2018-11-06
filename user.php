@@ -29,7 +29,7 @@
 			<div class="col-lg-12">
 				<div align="center" id="user" style="position:fixed;" class="col-sm-3">
 					<!-- User profile image, sized to 240x254, with 96 px -->
-					<img src=<?= $_SESSION['currentUser']['picture']?> id="profile_pic" alt="Avatar">
+					<img src=<?=$dao->getProfilePic($_SESSION['currentUser']['handle'])?> id="profile_pic" alt="Avatar">
 					<!-- User handle -->
 					<h3>@<?= $_SESSION['currentUser']['handle']?></h3>
 					<!-- Location -->
