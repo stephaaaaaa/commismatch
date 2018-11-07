@@ -2,30 +2,15 @@
 	$thisPage="HOME";
 	include("navbar.php");
 ?>
-<!DOCTYPE html>
-
-<!-- Initializer stuff -->
-<html lang="en">
-<head>
-  <title>Commismatch: Your Commissions</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="./styles/users_commissions.css">
-  <link rel="icon"
-      type="image/png"
-      href="favicon.ico">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
 <!-- End initializer stuff -->
 
 <body>
+<link rel="stylesheet" href="./styles/users_commissions.css">
 
 	<div class="col-lg-12" id="body">
 			<div class="col-lg-12">
 				<div align="center" id="user" class="col-lg-3">					
-					<h1><?=$_SESSION['currentUser']['handle']?>'s Commissions</h1>
+					<h1><?=$_SESSION['currentUser']['handle']?>'s' Commissions</h1>
 					<!-- Number of you need to do -->
 					<h4>1 current commission</h4>
 					<!-- Number of past commissions -->
@@ -61,3 +46,4 @@
 			<h5>Stephanie Labastida. 2018</h5>
 		</div>
 </body>
+</html>
