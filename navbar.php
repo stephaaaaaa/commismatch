@@ -29,3 +29,4 @@
             <a href="./logout.php" class="button">Log out</a>
         </span>
     </div>
+</body>
