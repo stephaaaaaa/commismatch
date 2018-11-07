@@ -8,7 +8,7 @@
 
 	$thisPage="HOME";
 	require_once("Dao.php");
-	$dao = new Dao();
+	//$dao = new Dao();
 ?>
 
 <!-- <!DOCTYPE html> -->
