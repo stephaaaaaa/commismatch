@@ -52,6 +52,7 @@
 }
 
 #user_content #posts #photos #photo img{
+	margin: 8px 8px 8px 8px;
 	height:224px;
 	width:224px;
 }

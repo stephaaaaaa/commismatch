@@ -245,6 +245,60 @@
                 return "Message me to request a commission!";
             }
         }
+
+        public function getAcceptingStatusAsBool($handle){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT acceptingCommissions FROM SiteUser WHERE handle = :handle");
+            $statement->bindParam(":handle", $handle);
+            $statement->execute();
+            $row = $statement->fetch();
+            return $row['acceptingCommissions'];
+        }
+
+        public function getCity($handle){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT city FROM SiteUser WHERE handle = :handle");
+            $statement->bindParam(":handle", $handle);
+            $statement->execute();
+            $row = $statement->fetch();
+            return $row['city'];
+        }
+
+        public function getCountry($handle){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT country FROM SiteUser WHERE handle = :handle");
+            $statement->bindParam(":handle", $handle);
+            $statement->execute();
+            $row = $statement->fetch();
+            return $row['country'];
+        }
+
+        public function getNote($handle){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT quoteOrBio FROM SiteUser WHERE handle = :handle");
+            $statement->bindParam(":handle", $handle);
+            $statement->execute();
+            $row = $statement->fetch();
+            return $row['quoteOrBio'];
+        }
+
+        public function getEmail($handle){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT email FROM SiteUser WHERE handle = :handle");
+            $statement->bindParam(":handle", $handle);
+            $statement->execute();
+            $row = $statement->fetch();
+            return $row['email'];
+        }
+
+        public function getPassword($handle){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT password FROM SiteUser WHERE handle = :handle");
+            $statement->bindParam(":handle", $handle);
+            $statement->execute();
+            $row = $statement->fetch();
+            return $row['password'];
+        }
     }
 
 ?>

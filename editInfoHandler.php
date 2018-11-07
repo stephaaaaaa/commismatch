@@ -67,12 +67,17 @@
     $handle = $_SESSION['currentUser']['handle'];
     $email = htmlspecialchars($_POST['email']);
 	$password = htmlspecialchars($_POST['password']);
-    $confirmedPassword = htmlspecialchars($_POST['confirmedPassword']);
-	if(htmlspecialchars($_POST['acceptingCommissions']) == 'Yes'){
-		$acceptingCommissions = '1';
-	}else{
-		$acceptingCommissions = '0';
+	$confirmedPassword = htmlspecialchars($_POST['confirmedPassword']);
+
+	if(!empty($_POST['acceptingCommissions'])){
+		$acceptingCommissions = htmlspecialchars($_POST['acceptingCommissions']);
+		if(htmlspecialchars($_POST['acceptingCommissions']) == 'Yes'){
+			$acceptingCommissions = '1';
+		}else{
+			$acceptingCommissions = '0';
+		}
 	}
+
 	$country = htmlspecialchars($_POST['country']);
     $city = htmlspecialchars($_POST['city']);
     $quoteOrBio = htmlspecialchars($_POST['quoteorBio']);
@@ -80,7 +85,7 @@
 	$editErrors = array();
 
 	// EMAIL VALIDATION
-    if(!isValid($email, 1, 50)){
+    if(!isValid($email, 0, 50)){
 		if(filter_var($email_a, FILTER_VALIDATE_EMAIL)){
 			$editErrors['email'] = "Invalid email address.";
 		}else{
@@ -88,18 +93,20 @@
 		}
 	}
 	// ACCEPTING COMMISSIONS VALIDATION
-	if($acceptingCommissions == ""){
-		$editErrors['acceptingCommissions'] = "Specify whether or not you will accept commissions for your art.";
-	}
+	// if(!empty($acceptingCommissions)){
+	// 	if($acceptingCommissions == ""){
+	// 		$editErrors['acceptingCommissions'] = "Specify whether or not you will accept commissions for your art.";
+	// 	}
+	// }
 	// LOCATION VALIDATION
-	if(!isValid($country, 1, 25)){
+	if(!isValid($country, 0, 25)){
 		if(containsNumbers($country)){
 			$editErrors['country'] = "Country cannot contain numbers";
 		}else{
 			$editErrors['country'] = "Please enter a country";
 		}
 	}
-	if(!isValid($city, 1, 25)){
+	if(!isValid($city, 0, 25)){
 		if(containsNumbers($city)){
 			$editErrors['city'] = "City cannot contain numbers";
 		}else{
@@ -111,7 +118,7 @@
         $editErrors['quoteOrBio'] = "Note is over the character limit.";
     }
 
-    if(isset($_FILES['upload']))
+    if(!empty($_FILES['upload']['name']))
 	{
         echo "uploading files   ";
 
@@ -133,28 +140,73 @@
 		}
 		else
 		{
+			echo "nfdhj";
             $editErrors['profilePic'] = "File could not be uploaded.";
         }
     }
-    
-	// PASSWORD VALIDATION
-    if(!isValid($password, 10, 128)){
-		$editErrors['password'] = "Password length must be at least 10 characters long.";
-	} else if($password != $confirmedPassword){
-		$editErrors['confirmedPassword'] = "Passwords do not match";
-    } else if(!isGoodPassword($password)){
-		$editErrors['password'] = "Password must contain at least 1 number, 1 special character, and 1 capital letter.";
-    }
+	
+	if($password != ""){
+		// PASSWORD VALIDATION
+		if(!isValid($password, 10, 128)){
+			$editErrors['password'] = "Password length must be at least 10 characters long.";
+		} else if($password != $confirmedPassword){
+			$editErrors['confirmedPassword'] = "Passwords do not match";
+		} else if(!isGoodPassword($password)){
+			$editErrors['password'] = "Password must contain at least 1 number, 1 special character, and 1 capital letter.";
+		}
+	}
+
+	function prepopulateIfEmpty(){
+		global $dao;
+		global $handle;
+		global $acceptingCommissions;
+		global $city;
+		global $country;
+		global $quoteOrBio;
+		global $email;
+		global $password;
+
+		if(empty($acceptingCommissions)){
+			$valInDB = $dao->getAcceptingStatusAsBool($handle);
+			if($valInDB == 1){
+				$acceptingCommissions = "Yes";
+			}else{
+				$acceptingCommissions = "No";
+			}
+		}
+		if(empty($city)){
+			$valInDB = $dao->getCity($handle);
+			$city = $valInDB;
+		}
+		if(empty($country)){
+			$valInDB = $dao->getCountry($handle);
+			$country = $valInDB;
+		}
+		if(empty($quoteOrBio)){
+			$valInDB = $dao->getNote($handle);
+			$quoteOrBio = $valInDB;
+		}
+		if(empty($email)){
+			$valInDB = $dao->getEmail($handle);
+			$email = $valInDB;
+		}
+		if(empty($password)){
+			$valInDB = $dao->getPassword($handle);
+			$password = $valInDB;
+		}
+	}
 
 	// REDIRECT
 	if(empty($editErrors)){
-        $dao->editUser($handle, $acceptingCommissions, $city, $country, $quoteOrBio, $email, $password);
+		prepopulateIfEmpty();
+		$dao->editUser($handle, $acceptingCommissions, $city, $country, $quoteOrBio, $email, $password);
 		header("Location: user.php");
 	} else {
 		$_SESSION['errors'] = $editErrors;
-		$_SESSION['presets'] = array('username' => htmlspecialchars($username),
+		$_SESSION['presets'] = array('country' => htmlspecialchars($country),
+										'city' => htmlspecialchars($city),
+										'note' => htmlspecialchars($quoteOrBio),
 										'email' => htmlspecialchars($email)) ;
-
 		header("Location: editInfo.php");
 	}
 ?>
