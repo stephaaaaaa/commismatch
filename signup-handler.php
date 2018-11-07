@@ -28,10 +28,6 @@
 		return false;
 	}
 
-	function isValidEmail(){
-
-	}
-
 	function eighteenOrOlder($birthday, $age){
 		$birthdayAsTime = strtotime($birthday);
 
@@ -131,14 +127,29 @@
 
 	// REDIRECT
 	if(empty($signupErrors)){
-		echo "\nFINAL:" . $fName . $lName . $username . $birthday . $gender . $acceptingCommissions . $city . $country . $email . $password;
-		$dao->addUser($fName, $lName, $username, $birthday, $gender, $acceptingCommissions, $city, $country, $email, $password);
-		header("Location: feed.html");
+		$blankPhotoPath = "./logos_icons/blank.jpg";
+		echo $blankPhotoPath;
+		$dao->addUser($fName, $lName, $username, $birthday, $gender, $acceptingCommissions, $city, $country, $email, $password, $blankPhotoPath);
+
+		if($dao->validateUser($username, $password)){
+			echo "inside validate user";
+			$_SESSION['access_granted'] = true;
+			$_SESSION['currentUser'] = $dao->getUserHandle($username);
+			session_regenerate_id(true);
+
+			header("Location: feed.php");
+		}
 	} else {
 		$_SESSION['errors'] = $signupErrors;
-		$_SESSION['presets'] = array('username' => htmlspecialchars($username),
-										'email' => htmlspecialchars($email)) ;
-
+		$_SESSION['presets'] = array('firstName' => htmlspecialchars($fName),
+										'lastName' => htmlspecialchars($lName),
+										'birthday' => htmlspecialchars($birthday),
+										'gender' => htmlspecialchars($gender),
+										'email' => htmlspecialchars($email),
+										'username' => htmlspecialchars($username),
+										'acceptingCommissions' => htmlspecialchars($acceptingCommissions),
+										'country' => htmlspecialchars($country),
+										'city' => htmlspecialchars($city));
 		header("Location: signup.php");
 	}
 ?>

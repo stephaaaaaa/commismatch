@@ -25,13 +25,13 @@
             return $connection->getAttribute(constant("PDO::ATTR_CONNECTION_STATUS"));
         }
 
-        public function addUser($firstname, $lastname, $username, $birthday, $gender, $acceptingCommissions, $city, $country, $email, $password)
+        public function addUser($firstname, $lastname, $username, $birthday, $gender, $acceptingCommissions, $city, $country, $email, $password, $blank)
         {
             $user = $this->getUser($username); // check if there is already a user
             if(!$user){
                 $connection = $this->getConnection();
-                $query = "INSERT INTO SiteUser(firstName, lastName, handle, birthday, gender, acceptingCommissions, city, country, email, password)
-                            VALUES (:firstName, :lastName, :handle, :birthday, :gender, :acceptingCommissions, :city, :country, :email, :password)";
+                $query = "INSERT INTO SiteUser(firstName, lastName, handle, birthday, gender, acceptingCommissions, city, country, email, password, profilePicture)
+                            VALUES (:firstName, :lastName, :handle, :birthday, :gender, :acceptingCommissions, :city, :country, :email, :password, :blank)";
                 $statement = $connection->prepare($query);
                 $statement->bindParam(':firstName', $firstname);
                 $statement->bindParam(':lastName', $lastname);
@@ -43,6 +43,7 @@
                 $statement->bindParam(':country', $country);
                 $statement->bindParam(':email', $email);
                 $statement->bindParam(':password', $password);
+                $statement->bindParam(':blank', $blank);
  
                 try{
                     $statement->execute();

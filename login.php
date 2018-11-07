@@ -25,7 +25,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="login.css"> 
+  <link rel="stylesheet" href="./styles/login.css"> 
   <link rel="icon" 
       type="image/png" 
       href="favicon.ico">
@@ -37,7 +37,7 @@
 		<body>
 			<div>
 				<a href="./landing.html">
-					<img class="login_img" src="logo_websize.png">
+					<img class="login_img" src="./logos_icons/logo_websize.png">
 				</a>
 			</div>
 			<div align="center" class="login_signup_well col-lg-6">
@@ -45,7 +45,12 @@
 					<div class="col-lg-12">
 						<label class="label">Username</label>
 						<input type="text" name="loginUsername" class="form-control"
-						>
+						<?php
+							if(isset($_SESSION['presets']['loginUsername'])){
+								echo 'value=' . "'" . $_SESSION['presets']['loginUsername'] . "'";
+							}
+						?> 
+						required>
 						<?php
 							if(isset($_SESSION['errors']['loginUsername'])) { ?>
 								<p id="userNameError" minlength="1" class="error"><?= $_SESSION['errors']['loginUsername'] ?></p>

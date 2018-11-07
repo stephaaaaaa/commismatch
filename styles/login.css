@@ -3,6 +3,13 @@
 	src: url(./Fonts/quicksand-v7-latin-regular.woff);
 }
 
+.login_img{
+	position: relative;
+	align-content: center;
+	margin-left: 42%;
+	margin-top:4%;
+}
+
 .login_signup_well {
 	position:absolute; 
 	top:50%; 

@@ -39,8 +39,8 @@
 						<label class="label">First Name</label>
 						<input type="text" name="firstName" class="form-control" maxLength="25" required
 							<?php
-								if(isset($_SESSION['presets']['fName'])){
-									echo 'value=' . "'" . $_SESSION['presets']['fName']. "'";
+								if(isset($_SESSION['presets']['firstName'])){
+									echo 'value=' . "'" . $_SESSION['presets']['firstName']. "'";
 								}
 							?>
 						>
@@ -54,8 +54,8 @@
 						<label class="label">Last Name</label>
 						<input type="text" name="lastName" class="form-control" maxLength="25" required
 						<?php
-								if(isset($_SESSION['presets']['lName'])){
-									echo 'value=' . "'" . $_SESSION['presets']['lName']. "'";
+								if(isset($_SESSION['presets']['lastName'])){
+									echo 'value=' . "'" . $_SESSION['presets']['lastName']. "'";
 								}
 						?>
 						>
@@ -67,7 +67,13 @@
 					<!--Birthday-->
 					<div class="col-sm-6">
 						<label class="label">Birthday</label>
-						<input type="date" name="birthday" class="form-control" required>
+						<input type="date" name="birthday" class="form-control" required
+							<?php
+								if(isset($_SESSION['presets']['birthday'])){
+									echo 'value=' . "'" . $_SESSION['presets']['birthday']. "'";
+								}
+							?>
+						>
 						<?php 
 							if(isset($_SESSION['errors']['birthday'])) { ?>
 							<p id="birthdayError" class="error"><?= $_SESSION['errors']['birthday'] ?></p>
@@ -87,6 +93,7 @@
 								<input type="radio" name="gender" value="other">Other
 							</div>
 							<?php 
+
 							if(isset($_SESSION['errors']['gender'])) { ?>
 							<p id="genderError" class="error"><?= $_SESSION['errors']['gender'] ?></p>
 						<?php } ?>
@@ -95,7 +102,13 @@
 					<!--Email-->
 					<div class="col-sm-8">
 						<label class="label">Email</label>
-						<input type="email" name="email" maxLength="50" class="form-control" required>
+						<input type="email" name="email" maxLength="50" class="form-control" required
+							<?php
+								if(isset($_SESSION['presets']['email'])){
+									echo 'value=' . "'" . $_SESSION['presets']['email']. "'";
+								}
+							?>
+						>
 						<?php 
 							if(isset($_SESSION['errors']['email'])) { ?>
 							<p id="emailError" class="error"><?= $_SESSION['errors']['email'] ?></p>
@@ -104,7 +117,13 @@
 					<!--Handle-->
 					<div class="col-sm-8">
 						<label class="label">Username/Handle</label>
-						<input type="text" name="username" maxLength="25" class="form-control" required>
+						<input type="text" name="username" maxLength="25" class="form-control" required
+							<?php
+								if(isset($_SESSION['presets']['username'])){
+									echo 'value=' . "'" . $_SESSION['presets']['username']. "'";
+								}
+							?>
+						>
 						<?php 
 							if(isset($_SESSION['errors']['username'])) { ?>
 							<p id="usernameError" class="error"><?= $_SESSION['errors']['username'] ?></p>
@@ -129,11 +148,23 @@
 					<!-- Location info -->
 					<div class="col-sm-5">
 						<label class="label">Country</label>
-						<input type="text" name="country" maxlength="25" class="form-control" required>
+						<input type="text" name="country" maxlength="25" class="form-control" required
+							<?php
+								if(isset($_SESSION['presets']['country'])){
+									echo 'value=' . "'" . $_SESSION['presets']['country']. "'";
+								}
+							?>
+						>
 					</div>
 					<div class="col-sm-5">
 						<label class="label">City</label>
-						<input type="text" name="city" maxlength="25" class="form-control" required>
+						<input type="text" name="city" maxlength="25" class="form-control" required
+							<?php
+								if(isset($_SESSION['presets']['city'])){
+									echo 'value=' . "'" . $_SESSION['presets']['city']. "'";
+								}
+							?>
+						>
 					</div>
 					<div>
 						<?php 

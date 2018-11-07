@@ -57,6 +57,8 @@
 }
 
 .footer{
+	position: fixed;
 	font-family: "Quicksand";
 	margin-left:3%;
+	margin-top: 45%;
 }
