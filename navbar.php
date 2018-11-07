@@ -4,6 +4,7 @@
     }
     
     require_once('sessionFunctions.php');
+    // var_dump($_SESSION);
 ?>
 
 <html>

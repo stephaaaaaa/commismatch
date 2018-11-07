@@ -25,7 +25,7 @@
 	<div class="col-lg-12" id="body">
 			<div class="col-lg-12">
 				<div align="center" id="user" class="col-lg-3">					
-					<h1>Your Commissions</h1>
+					<h1><?=$_SESSION['currentUser']['handle']?>'s Commissions</h1>
 					<!-- Number of you need to do -->
 					<h4>1 current commission</h4>
 					<!-- Number of past commissions -->
