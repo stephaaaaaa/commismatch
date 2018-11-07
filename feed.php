@@ -32,6 +32,8 @@
 <!-- End initializer stuff -->
 
 <body>
+	<?php var_dump($_SESSION);?>
+
 	<div class="col-lg-12">
 		<div id="body" class="welcome col-lg-12">
 			<h1>Welcome, <?= $_SESSION['currentUser']['handle']?>!</h1>
