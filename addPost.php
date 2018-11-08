@@ -1,7 +1,7 @@
 <?php
-	include("navbar.php");
-	require_once("Dao.php");
-	$dao = new Dao();
+    include("navbar.php");
+    require_once("dao.php");
+    $dao = new Dao();
 ?>
 
 		<div align="left" class="edit_well col-lg-12">
@@ -36,16 +36,13 @@
 						</div>
 					</div>
 					
-					<div>
-						<?php if(isset($_SESSION['errors']['message'])){ ?>
-							<p> 
-								<span id="Error" class="error"><?= $_SESSION['errors']['message'] ?></span>
-							</p>
-						<?php 	} 
-							unset($_SESSION['errors']);
-						?>
-					</div>
-						</div>
+					<?php if(isset($_SESSION['errors']['message'])){ ?>
+						<p> 
+							<span id="Error" class="error"><?= $_SESSION['errors']['message']?></span>
+						</p>
+					<?php 	} 
+						unset($_SESSION['errors']);
+					?>
 				</div>
 			</form>
 		</div>
