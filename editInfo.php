@@ -1,3 +1,9 @@
+<?php
+    include("navbar.php");
+    require_once("dao.php");
+    $dao = new Dao();
+?>
+
 		<div align="left" class="edit_well col-lg-12">
 			<link rel="stylesheet" href="./styles/editInfo.css">
 			<form method="POST" action="editInfoHandler.php" enctype="multipart/form-data">
