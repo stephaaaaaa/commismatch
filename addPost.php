@@ -45,7 +45,7 @@
 							unset($_SESSION['errors']);
 						?>
 					</div>
-				
+						</div>
 				</div>
 			</form>
 		</div>
