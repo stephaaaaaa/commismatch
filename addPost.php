@@ -5,6 +5,7 @@
 ?>
 
 		<div align="left" class="edit_well col-lg-12">
+			<link rel="stylesheet" href="./styles/addPost.css">
 			<form method="POST" action="addPostHandler.php" enctype="multipart/form-data">
                 <h2>Upload Post</h2>
                 <div align="left" class="well col-lg-6">
