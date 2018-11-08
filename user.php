@@ -1,6 +1,3 @@
-
-
-
 <?php
     include("navbar.php");
     require_once("dao.php");

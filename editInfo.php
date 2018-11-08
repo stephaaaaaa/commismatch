@@ -1,27 +1,12 @@
 <?php
-	$thisPage="HOME";
 	include("navbar.php");
 	require_once("Dao.php");
 	$dao = new Dao();
 ?>
 
-
-<!DOCTYPE html>
-<!-- Initializer stuff -->
-<html lang="en">
-	<head>
-		<title>Commismatch</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<link rel="stylesheet" href="./styles/editInfo.css">
-		<link rel="icon" type="image/png" href="favicon.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	</head>
-	<!-- End initializer stuff -->
-
+	
 	<body>
+			<link rel="stylesheet" href="./styles/editInfo.css">
 		<form method="POST" action="editInfoHandler.php" enctype="multipart/form-data">
 			<div align="left" class="edit_well col-lg-12">
                 <h2>Edit Information</h2>
