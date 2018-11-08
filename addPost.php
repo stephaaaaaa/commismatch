@@ -31,12 +31,16 @@
 							<input type="submit" class="form-control signup_btn">
 						</div>
 					</div>
-
-					<?php if(isset($_SESSION['errors']['message'])){ ?>
-						<p> <span id="Error" class="error"><?= $_SESSION['errors']['message'] ?></span></p>
-					<?php 	} 
-						unset($_SESSION['errors']);
-					?>
+					
+					<div>
+						<?php if(isset($_SESSION['errors']['message'])){ ?>
+							<p> 
+								<span id="Error" class="error"><?= $_SESSION['errors']['message'] ?></span>
+							</p>
+						<?php 	} 
+							unset($_SESSION['errors']);
+						?>
+					</div>
 				</div>
 			</form>
 		</div>
