@@ -4,10 +4,8 @@
 	$dao = new Dao();
 ?>
 
-	
-	<body>
-			<link rel="stylesheet" href="./styles/editInfo.css">
 		<form method="POST" action="editInfoHandler.php" enctype="multipart/form-data">
+		<link rel="stylesheet" href="./styles/editInfo.css">
 			<div align="left" class="edit_well col-lg-12">
                 <h2>Edit Information</h2>
                 <div align="left" class="well col-lg-6">
