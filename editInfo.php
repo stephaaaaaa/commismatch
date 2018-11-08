@@ -1,7 +1,8 @@
 <?php
     include("navbar.php");
     require_once("dao.php");
-    $dao = new Dao();
+	$dao = new Dao();
+	// :)
 ?>
 
 		<div align="left" class="edit_well col-lg-12">
