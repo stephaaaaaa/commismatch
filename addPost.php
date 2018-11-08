@@ -1,32 +1,15 @@
 <?php
-	$thisPage="HOME";
 	include("navbar.php");
 	require_once("Dao.php");
 	$dao = new Dao();
 ?>
 
-<!DOCTYPE html>
-<!-- Initializer stuff -->
-<html lang="en">
-	<head>
-		<title>Commismatch</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<link rel="stylesheet" href="./styles/addPost.css">
-		<link rel="icon" type="image/png" href="favicon.ico">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	</head>
-	<!-- End initializer stuff -->
-
-	<body>
-		<form method="POST" action="addPostHandler.php" enctype="multipart/form-data">
-			<div align="left" class="edit_well col-lg-12">
+		<div align="left" class="edit_well col-lg-12">
+			<form method="POST" action="addPostHandler.php" enctype="multipart/form-data">
                 <h2>Upload Post</h2>
                 <div align="left" class="well col-lg-6">
 					<h4>Please keep image size at 224x224 for best quality!</h4>
-                    <!-- File upload link -->
+					<!-- File upload link -->
                     <div class="col-sm-8">
                         <input type="file" name="upload">
                     </div>
@@ -54,6 +37,7 @@
 						unset($_SESSION['errors']);
 					?>
 				</div>
-		</form>
+			</form>
+		</div>
 	</body>
 </html>
