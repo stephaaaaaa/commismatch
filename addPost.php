@@ -13,18 +13,22 @@
 					<!-- File upload link -->
                     <div class="col-sm-8">
                         <input type="file" name="upload">
-                    </div>
+					</div>
+					
                     <!-- Caption -->
                     <div class="col-sm-12">
                         <div>
                             <label class="label">Caption</label>
-                        </div>
+						</div>
+						
                         <textarea class="form-control noteField" name="caption" rows="4" maxlength="256"></textArea>
-                    </div>
+					</div>
+					
                     <?php 
                         if(isset($_SESSION['errors']['quoteOrBio'])) { ?>
                         <p id="commissionsError" class="error"><?= $_SESSION['errors']['acceptingCommission'] ?></p>
 					<?php } ?>
+
 					<!-- Signup button -->
 					<div class="col-sm-12">
 						<div class="col-sm-3">
@@ -41,6 +45,7 @@
 							unset($_SESSION['errors']);
 						?>
 					</div>
+				
 				</div>
 			</form>
 		</div>
