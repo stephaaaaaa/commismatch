@@ -141,15 +141,32 @@
 		}
 	} else {
 		$_SESSION['errors'] = $signupErrors;
+
 		$_SESSION['presets'] = array('firstName' => htmlspecialchars($fName),
 										'lastName' => htmlspecialchars($lName),
 										'birthday' => htmlspecialchars($birthday),
-										'gender' => htmlspecialchars($gender),
+										// 'gender' => htmlspecialchars($gender),
 										'email' => htmlspecialchars($email),
 										'username' => htmlspecialchars($username),
-										'acceptingCommissions' => htmlspecialchars($acceptingCommissions),
+										// 'acceptingCommissions' => htmlspecialchars($acceptingCommissions),
 										'country' => htmlspecialchars($country),
 										'city' => htmlspecialchars($city));
+		if($gender == "male"){
+			$_SESSION['presets']['gender'] = "male";
+		}else if($gender == "female"){
+			$_SESSION['presets']['gender'] = "female";
+		}else{
+			$_SESSION['presets']['gender'] = "other";
+		}
+
+		if($acceptingCommissions == "Yes"){
+			$_SESSION['presets']['acceptingCommissions'] = "Yes";
+		}else{
+			$_SESSION['presets']['acceptingCommissions'] = "No";
+		}
+
+		echo $_SESSION['presets']['gender'];
+
 		header("Location: signup.php");
 	}
 ?>

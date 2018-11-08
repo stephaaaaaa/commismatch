@@ -84,13 +84,31 @@
 						<label class="label">I am a:</label>
 						<div class="rad_btns">
 							<div>
-								<input type="radio" name="gender" value="male" required>Male
+								<input type="radio" name="gender" value="male" required 
+								<?php
+									if($_SESSION['presets']['gender']=="male"){
+										echo 'checked="checked"';	
+									}
+								?>
+								>Male
 							</div>
 							<div>
-								<input type="radio" name="gender" value="female">Female
+								<input type="radio" name="gender" value="female"
+								<?php
+									if($_SESSION['presets']['gender']=="female"){
+										echo 'checked="checked"';	
+									}
+								?>
+								>Female
 							</div>
 							<div>
-								<input type="radio" name="gender" value="other">Other
+								<input type="radio" name="gender" value="other"
+								<?php
+									if($_SESSION['presets']['gender']=="other"){
+										echo 'checked="checked"';	
+									}
+								?>
+								>Other
 							</div>
 							<?php 
 
@@ -134,10 +152,22 @@
 						<label class="label">Will you be accepting commissions?</label>
 						<div class="rad_btns">
 							<div>
-								<input type="radio" name="acceptingCommissions" value="Yes" required>Yes
+								<input type="radio" name="acceptingCommissions" value="Yes" required
+									<?php
+										if($_SESSION['presets']['acceptingCommissions'] == "Yes"){
+											echo 'checked="checked"';	
+										}
+									?>
+								>Yes
 							</div>
 							<div>
-								<input type="radio" name="acceptingCommissions" value="No">No
+								<input type="radio" name="acceptingCommissions" value="No"
+									<?php
+										if($_SESSION['presets']['acceptingCommissions'] == "No"){
+											echo 'checked="checked"';	
+										}
+									?>
+								>No
 							</div>
 						</div>
 						<?php 
