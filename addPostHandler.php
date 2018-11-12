@@ -1,6 +1,7 @@
 <?php
     // initialize the dao w/require once
 	require_once("dao.php");
+	require_once("php.ini");
 	session_start();
 	
 	$dao = new Dao();
@@ -13,7 +14,18 @@
         }
 		return $isValid;
 	}
-    
+	
+	function isValidType($filetype){
+		if($filetype == "jpg"){
+			return true;
+		}else if($filetype == "jpeg"){
+			return true;
+		}else if($filetype == "png"){
+			return true;
+		}
+		return false;
+	}
+	
     $caption = htmlspecialchars($_POST['caption']);
 	$valid = true;
 	$postErrors = array();
@@ -27,25 +39,46 @@
 	{
         echo "uploading files   ";
 
+		$_FILES['upload']['name'] = strtolower($_FILES['upload']['name']);
 		// file name, type, size, temporary name
 		$file_name = $_FILES['upload']['name'];
+		echo "</br>File name: ".$file_name."</br>";
 		$file_type = $_FILES['upload']['type'];
+		echo "File type".$file_type."</br>";
 		$file_tmp_name = $_FILES['upload']['tmp_name'];
+		echo "Tmp name: ".$file_tmp_name."</br>";
 		$file_size = $_FILES['upload']['size'];
- 
-		// target directory
-		$target_dir = "uploads/";
-	
-		// uploding file
-        if(move_uploaded_file($file_tmp_name,$target_dir.$file_name))
-		{
-			$dao->uploadPost($_SESSION['currentUser']['handle'], "$target_dir$file_name", $caption);
-			move_uploaded_file($_FILES['upload']['tmp_name'], "$target_dir$file_name");
+		echo "File size: ".$file_size."</br>";
+
+		//phpinfo();
+
+		if($_FILES['upload']['size'] > 'post_max_size' || empty($_FILES['upload']['size'])){
+			$postErrors['post'] = "The file is not within the appropriate size range. Too big.";
+		}else{
+			if(empty($_FILES['upload']['tmp_name'])){
+				echo $_FILES['upload']['tmp_name'];
+				$postErrors['post'] = "File location could not be found.";
+			}
+
+			if(isValidType($_FILES['upload']['type'])){
+				$target_dir = "uploads/";
+			
+				// uploding file
+				if(move_uploaded_file($file_tmp_name, $target_dir.$file_name))
+				{
+					$dao->uploadPost($_SESSION['currentUser']['handle'], "$target_dir$file_name", $caption);
+					move_uploaded_file($_FILES['upload']['tmp_name'], "$target_dir$file_name");
+				}
+				else
+				{
+					$postErrors['post'] = "File could not be uploaded.";
+				}
+			}else{
+				$postErrors['post'] = "File is of invalid type. Please upload files with extensions '.jpeg', '.jpg', or '.png'.";
+			}
 		}
-		else
-		{
-            $postErrors['post'] = "File could not be uploaded.";
-        }
+		print_r($_FILES['upload']['errors']);
+
     }
 
 	// REDIRECT
@@ -53,8 +86,7 @@
 		header("Location: user.php");
 	} else {
 		$_SESSION['errors'] = $postErrors;
-		$_SESSION['presets'] = array('username' => htmlspecialchars($username),
-										'email' => htmlspecialchars($email)) ;
+		//print_r($_SESSION['errors']);
 
 		header("Location: addPost.php");
 	}

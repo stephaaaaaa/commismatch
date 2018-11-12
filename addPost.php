@@ -34,16 +34,16 @@
 						<div class="col-sm-3">
 							<input type="submit" class="form-control signup_btn">
 						</div>
+							<?php if(isset($_SESSION['errors']['post'])){ ?>
+							<p> 
+								<span id="Error" class="error"><?= $_SESSION['errors']['post']?></span>
+							</p>
+							<?php 	} 
+								unset($_SESSION['errors']);
+							?>
 					</div>
-					
-					<?php if(isset($_SESSION['errors']['message'])){ ?>
-						<p> 
-							<span id="Error" class="error"><?= $_SESSION['errors']['message']?></span>
-						</p>
-					<?php 	} 
-						unset($_SESSION['errors']);
-					?>
 				</div>
+				
 			</form>
 		</div>
 	</body>
