@@ -220,7 +220,7 @@
         public function retrievePhotos($handle){
             $connection = $this->getConnection();
             $userID = $this->getUserIDFromHandle($handle);
-            $statement = $connection->prepare("SELECT imageFilePath FROM Post WHERE author = :userID");
+            $statement = $connection->prepare("SELECT imageFilePath FROM Post WHERE author = :userID ORDER BY datePosted desc");
             $statement->bindParam(":userID", $userID);
             $statement->execute();
             $rowArray = $statement->fetchAll(PDO::FETCH_COLUMN);
