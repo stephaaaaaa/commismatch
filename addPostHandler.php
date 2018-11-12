@@ -40,7 +40,7 @@
         if(move_uploaded_file($file_tmp_name,$target_dir.$file_name))
 		{
 			$dao->uploadPost($_SESSION['currentUser']['handle'], "$target_dir$file_name", $caption);
-			move_uploaded_file( $_FILES['upload']['tmp_name'], $target_dir$file_name );
+			move_uploaded_file($_FILES['upload']['tmp_name'], "$target_dir$file_name");
 		}
 		else
 		{
