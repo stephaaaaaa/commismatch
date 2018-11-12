@@ -1,7 +1,6 @@
 <?php
     // initialize the dao w/require once
 	require_once("dao.php");
-	require_once("php.ini");
 	session_start();
 	
 	$dao = new Dao();
@@ -16,11 +15,11 @@
 	}
 	
 	function isValidType($filetype){
-		if($filetype == "jpg"){
+		if($filetype == "image/jpg"){
 			return true;
-		}else if($filetype == "jpeg"){
+		}else if($filetype == "image/jpeg"){
 			return true;
-		}else if($filetype == "png"){
+		}else if($filetype == "image/png"){
 			return true;
 		}
 		return false;
@@ -44,7 +43,7 @@
 		$file_name = $_FILES['upload']['name'];
 		echo "</br>File name: ".$file_name."</br>";
 		$file_type = $_FILES['upload']['type'];
-		echo "File type".$file_type."</br>";
+		echo "File type: ".$file_type."</br>";
 		$file_tmp_name = $_FILES['upload']['tmp_name'];
 		echo "Tmp name: ".$file_tmp_name."</br>";
 		$file_size = $_FILES['upload']['size'];
@@ -52,7 +51,7 @@
 
 		//phpinfo();
 
-		if($_FILES['upload']['size'] > 'post_max_size' || empty($_FILES['upload']['size'])){
+		if(empty($_FILES['upload']['size'])){
 			$postErrors['post'] = "The file is not within the appropriate size range. Too big.";
 		}else{
 			if(empty($_FILES['upload']['tmp_name'])){
@@ -61,8 +60,9 @@
 			}
 
 			if(isValidType($_FILES['upload']['type'])){
-				$target_dir = "uploads/";
-			
+				$target_dir = $_SERVER['DOCUMENT_ROOT']."//uploads/";
+				//$target_dir = $_SERVER['DOCUMENT_ROOT']."https://commismatch.herokuapp.com/uploads/";
+
 				// uploding file
 				if(move_uploaded_file($file_tmp_name, $target_dir.$file_name))
 				{
@@ -77,7 +77,7 @@
 				$postErrors['post'] = "File is of invalid type. Please upload files with extensions '.jpeg', '.jpg', or '.png'.";
 			}
 		}
-		print_r($_FILES['upload']['errors']);
+		print_r($_FILES['upload']['error']);
 
     }
 
@@ -87,7 +87,8 @@
 	} else {
 		$_SESSION['errors'] = $postErrors;
 		//print_r($_SESSION['errors']);
+		print_r($_SESSION['errors']);
 
-		header("Location: addPost.php");
+		//header("Location: addPost.php");
 	}
 ?>
