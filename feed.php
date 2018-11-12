@@ -23,18 +23,33 @@
 				<h1>Welcome, <?= $_SESSION['currentUser']['handle']?>!</h1>
 				<!-- Use actual followers + following -->
 				<h5></h5>
+					<div id="headers">
+						<h2>Popular Artists</h2>
+						
+						<h2>Popular Commissions</h2>
 
-				<h2>Popular Artists</h2>
-				
-				<h2>Popular Commissions</h2>
-
-				<h2>Featured Artists</h2>
-				
-				<h2>In Your Area</h2>
-				
-				<h2>Following</h2>
-
-				<h2>Feed</h2>
+						<h2>Featured Artists</h2>
+						<h2>In Your Area</h2>
+						
+						<h2>Following</h2>
+					</div>
+					<div id="headers2">
+						<h2>Feed</h2>
+					</div>
 			</div>
 		</div>
 </body>
+
+<script>
+	console.log("not in a function yet");
+	$(window).load("load", function(){
+		console.log("In function");
+		$(this).find("#body").fadeTo(200, 1);
+		$("#body").fadeIn(1000);
+	});
+
+	$(window).scroll(function(){
+		$(this).find("#body").fadeTo(200, 1);
+		$(this).find("#body").fadeIn(9000);
+	});
+</script>
