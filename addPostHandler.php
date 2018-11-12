@@ -60,7 +60,7 @@
 			}
 
 			if(isValidType($_FILES['upload']['type'])){
-				$target_dir = $_SERVER['DOCUMENT_ROOT']."//uploads/";
+				$target_dir = "uploads/";
 				//$target_dir = $_SERVER['DOCUMENT_ROOT']."https://commismatch.herokuapp.com/uploads/";
 
 				// uploding file
