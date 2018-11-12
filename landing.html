@@ -73,3 +73,17 @@
 	</div>
 </body>
 </html>
+
+<script>
+
+	$(window).on( "load", function() {
+		$("#body#start_creating").bind("load", function(){
+			console.log("in bind function");
+			$(this).fadeIn();
+		});
+
+		console.log("In function");
+		$(this).find(".icons").fadeTo(200, 1);
+		$("#start_creating").fadeIn(6000);
+	});
+</script>

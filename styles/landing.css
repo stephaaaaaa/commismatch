@@ -93,6 +93,10 @@ p {
 	margin-left: 300px;
 }
 
+#start_creating {
+	display: none;
+}
+
 #start_creating h2{
 	font-family:Quicksand;
 	text-align:center;
