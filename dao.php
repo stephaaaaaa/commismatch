@@ -271,6 +271,8 @@
                 foreach($rowArray as $key=>$value){
                     echo "<img src=\"".$value."\">";
                 }
+            }else{
+                echo "<p>No posts to show!</p>";
             }
         }
 
@@ -379,6 +381,40 @@
             $statement->execute();
             $row = $statement->fetch();
             return $row['handle'];
+        }
+
+        public function getLocalUsers($handle){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT city, country FROM SiteUser WHERE handle = :handle");
+            $statement->bindParam(":handle", $handle);
+            $statement->execute();
+            $row = $statement->fetch();
+            $city = $row['city'];
+            $country = $row['country'];
+
+            $statement = $connection->prepare("SELECT profilePicture FROM SiteUser WHERE city = :city AND country = :country AND handle != :handle");
+            $statement->bindParam(":city", $city);
+            $statement->bindParam(":country", $country);
+            $statement->bindParam(":handle", $handle);
+            $statement->execute();
+            $picArray = $statement->fetchAll(PDO::FETCH_COLUMN);
+
+            $statement = $connection->prepare("SELECT userID FROM SiteUser WHERE city = :city AND country = :country AND handle != :handle");
+            $statement->bindParam(":city", $city);
+            $statement->bindParam(":country", $country);
+            $statement->bindParam(":handle", $handle);
+            $statement->execute();
+            $idArray = $statement->fetchAll(PDO::FETCH_COLUMN);
+
+            if(!empty($picArray)){
+                foreach($picArray as $key=>$value){
+                    foreach($idArray as $key=>$value2){
+                        echo "<a href=\"user.php?$value2\"><img src=\"".$value."\"></a>";
+                    }
+                }
+            }else{
+                echo "<p>No posts to show!</p>";
+            }
         }
     }
 

@@ -14,6 +14,12 @@ body{
 	padding-top:7%;
 }
 
+#body #headers #locals img{
+	width:75px;
+	height:80px;
+	margin-top:-10%;
+}
+
 /* #body #headers{
 	display: none;
 }

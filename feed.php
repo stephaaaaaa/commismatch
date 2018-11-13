@@ -1,6 +1,8 @@
 <?php
 	$thisPage="HOME";
 	include("navbar.php");
+	require_once("dao.php");
+    $dao = new Dao();
 ?>
 <!DOCTYPE html>
 
@@ -29,13 +31,18 @@
 						<h2>Popular Commissions</h2>
 
 						<h2>Featured Artists</h2>
+
 						<h2>In Your Area</h2>
-						
-						<h2>Following</h2>
+						<div id="locals">
+							<?php
+								$dao->getLocalUsers($_SESSION['currentUser']['handle']);
+							?>
+						</div>
+						<!-- <h2>Following</h2>
 					</div>
 					<div id="headers2">
 						<h2>Feed</h2>
-					</div>
+					</div> -->
 			</div>
 		</div>
 </body>
