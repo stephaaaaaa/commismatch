@@ -2,7 +2,8 @@
     if(session_status() === PHP_SESSION_NONE){
         session_start();
     }
-    
+    require_once("dao.php");
+    $dao = new Dao();
     require_once('sessionFunctions.php');
 ?>
 <!DOCTYPE html>
@@ -25,8 +26,12 @@
             <a href="./users_commissions.php" class="button">My Commissions</a>
             <a href="./messages.php" class="button">Messages</a>
             <span id="profile">
-                <a href="./user.php" class="button"><?=$_SESSION['currentUser']['handle']?></a>
-                <img src="./logos_icons/home.png" alt="logo"/> <!--User's profile pic-->
+                <?php
+                    $url_string = "./user.php?".$dao->getUserIDFromHandle($_SESSION['currentUser']['handle']);
+                    //echo $url_string;
+                ?>
+                <a href=<?=$url_string?> class="button"><?=$_SESSION['currentUser']['handle']?></a>
+                <img src="./logos_icons/home.png" alt="logo"/>
                 <a href="./logout.php" class="button">Log out</a>
             </span>
         </div>
