@@ -131,10 +131,30 @@
             return $row['city'];
         }
 
+        public function getUserCityByID($userID){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT city FROM SiteUser WHERE userID = :userID");
+            $statement->bindParam(":userID", $userID);
+            $statement->execute();
+            $row = $statement->fetch();
+
+            return $row['city'];
+        }
+
         public function getUserCountry($handle){
             $connection = $this->getConnection();
             $statement = $connection->prepare("SELECT country FROM SiteUser WHERE handle = :handle");
             $statement->bindParam(":handle", $handle);
+            $statement->execute();
+            $row = $statement->fetch();
+
+            return $row['country'];
+        }
+
+        public function getUserCountryByID($userID){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT country FROM SiteUser WHERE userID = :userID");
+            $statement->bindParam(":userID", $userID);
             $statement->execute();
             $row = $statement->fetch();
 
@@ -182,6 +202,16 @@
             $connection = $this->getConnection();
             $statement = $connection->prepare("SELECT profilePicture FROM SiteUser WHERE handle = :handle");
             $statement->bindParam(":handle", $handle);
+
+            $statement->execute();
+            $row = $statement->fetch();
+            return $row['profilePicture'];
+        }
+
+        public function getProfilePicFromID($userID){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT profilePicture FROM SiteUser WHERE userID = :userID");
+            $statement->bindParam(":userID", $userID);
 
             $statement->execute();
             $row = $statement->fetch();
@@ -298,6 +328,15 @@
             $statement->execute();
             $row = $statement->fetch();
             return $row['password'];
+        }
+
+        public function getHandleFromID($userID){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT handle FROM SiteUser WHERE userID = :userID");
+            $statement->bindParam(":userID", $userID);
+            $statement->execute();
+            $row = $statement->fetch();
+            return $row['handle'];
         }
     }
 
