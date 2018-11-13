@@ -171,7 +171,19 @@
             if($row['quoteOrBio'] == ""){
                 return "I'm a person of few words!";
             }
+            return $row['quoteOrBio'];
+        }
 
+        public function getArtistQuoteByID($userID){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT quoteOrBio FROM SiteUser WHERE userID = :userID");
+            $statement->bindParam(":userID", $userID);
+            $statement->execute();
+            $row = $statement->fetch();
+
+            if($row['quoteOrBio'] == ""){
+                return "I'm a person of few words!";
+            }
             return $row['quoteOrBio'];
         }
 
@@ -262,10 +274,40 @@
             }
         }
 
+        public function retrievePhotosByID($userID){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT imageFilePath FROM Post WHERE author = :userID ORDER BY datePosted desc");
+            $statement->bindParam(":userID", $userID);
+            $statement->execute();
+            $rowArray = $statement->fetchAll(PDO::FETCH_COLUMN);
+
+            if(!empty($rowArray)){
+                foreach($rowArray as $key=>$value){
+                    echo "<img src=\"".$value."\">";
+                }
+            }else{
+                echo "<p>No posts to show!</p>";
+            }
+        }
+
         public function getAcceptingStatus($handle){
             $connection = $this->getConnection();
             $statement = $connection->prepare("SELECT acceptingCommissions FROM SiteUser WHERE handle = :handle");
             $statement->bindParam(":handle", $handle);
+            $statement->execute();
+            $row = $statement->fetch();
+
+            if($row['acceptingCommissions'] == 0){
+                return "Currently not accepting commissions";
+            }else{
+                return "Message me to request a commission!";
+            }
+        }
+
+        public function getAcceptingStatusFromID($userID){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT acceptingCommissions FROM SiteUser WHERE userID = :userID");
+            $statement->bindParam(":userID", $userID);
             $statement->execute();
             $row = $statement->fetch();
 

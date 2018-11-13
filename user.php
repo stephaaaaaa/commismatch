@@ -54,29 +54,55 @@
 					</h5>
 					<!-- Accepting Status -->
 					<h5>
-						<?=$dao->getAcceptingStatus($_SESSION['currentUser']['handle'])?>
+						<?php
+							if($userID == $urlID){
+								echo $dao->getAcceptingStatus($_SESSION['currentUser']['handle']);
+							}else{
+								echo $dao->getAcceptingStatusFromID($urlID);
+							}
+						?>
 					</h5>
 				</div>
 				<div id="user_content" class="col-lg-9">
 					<h3>A note from the artist:</h3>
-					<h5>"<?=$dao->getArtistQuote($_SESSION['currentUser']['handle'])?>"</h5>
-					<!-- Message Icon -->
-					<a href="./messages.php" class="button" id="icon">
-						<img src="./logos_icons/letter.png">
-					</a>
-					<a	href="./editInfo.php" class="button" id="icon">
-							<img src="./logos_icons/editIcon.png">
-					</a>
-					<a	href="./addPost.php" class="button" id="icon">
-							<img src="./logos_icons/plus.png">
-					</a>
+					<h5>
+						<?php
+							if($userID == $urlID){
+								echo "\"".$dao->getArtistQuote($_SESSION['currentUser']['handle'])."\"";
+							}else{
+								echo "\"".$dao->getArtistQuoteByID($urlID)."\"";
+							}
+						?>
+						
+					</h5>
+					<?php // message icon
+						if($userID == $urlID){
+							echo "<a href=\"./messages.php\" class=\"button\" id=\"icon\">
+							<img src=\"./logos_icons/letter.png\"> </a>"; // check your messages
+
+							echo "<a href=\"./editInfo.php\" class=\"button\" id=\"icon\">
+							<img src=\"./logos_icons/editIcon.png\"> </a>"; // edit your page
+
+							echo "<a href=\"./addPost.php\" class=\"button\" id=\"icon\">
+							<img src=\"./logos_icons/plus.png\"> </a>"; // add a post
+						}else{
+							echo "<a href=\"./modal_sendMessage.php\" class=\"button\" id=\"icon\">
+							<img src=\"./logos_icons/letter.png\"> </a>"; // make this actually open the modal message
+						}
+					?>
 
 					<div id="posts">
 						<h4>Posts</h4>
 						<div id="photos">
 							<!-- 130x130, 90px -->
 							<div id="photo">
-								<?=$dao->retrievePhotos($_SESSION['currentUser']['handle']);?>
+								<?php
+									if($userID == $urlID){
+										echo $dao->retrievePhotos($_SESSION['currentUser']['handle']);
+									}else{
+										echo $dao->retrievePhotosByID($urlID);
+									}
+								?>
 							</div>
 												
 						</div>
