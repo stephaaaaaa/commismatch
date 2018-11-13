@@ -30,6 +30,11 @@
     overflow-x: hidden;
 }
 
+#user_content button{
+	border: none;
+	background: none;
+}
+
 #user_content #icon{
 	z-index:100; 
 	position:relative;
