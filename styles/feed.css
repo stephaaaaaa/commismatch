@@ -17,16 +17,8 @@ body{
 #body #headers #locals img{
 	width:75px;
 	height:80px;
-	margin-top:-10%;
+	margin-top:-5%;
 }
-
-/* #body #headers{
-	display: none;
-}
-
-#body #headers2{
-	display: none;
-} */
 
 .welcome h5{
 	margin-bottom:5%;
