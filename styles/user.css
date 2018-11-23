@@ -21,6 +21,10 @@
 	position: relative;
 }
 
+.modal-dialog .modal-footer input{
+	width:130px;
+}
+
 #user_content {
 	font-family: Quicksand;
 	margin-left: 30%;

@@ -91,36 +91,39 @@
 							<img src=\"./logos_icons/letter.png\"></button>";
 						}
 					?>
-							<!-- Modal -->
-							<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+					<!-- Modal -->
+					<form method="POST" action="message-handler.php">
+						<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title" id="ModalLabel">New message</h5>
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-									</button>
-								</div>
-								<div class="modal-body">
-									<form>
-									<div class="form-group">
-										<label for="recipient-name" class="col-form-label">Recipient:</label>
-										<input type="text" readonly="true" class="form-control" id="recipient-name">
+									<div class="modal-header">
+										<h5 class="modal-title" id="ModalLabel">New message</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+										</button>
 									</div>
-									<div class="form-group">
-										<label for="message-text" class="col-form-label">Message:</label>
-										<textarea class="form-control" id="message-text"></textarea>
+									<div class="modal-body">
+										<form>
+										<div class="form-group">
+											<label for="recipient-name" class="col-form-label">Recipient:</label>
+											<input type="text" readonly="true" class="form-control" id="recipient-name">
+										</div>
+										<div class="form-group">
+											<label for="message-text" class="col-form-label">Message:</label>
+											<textarea class="form-control" id="message-text"></textarea>
+										</div>
+										</form>
 									</div>
-									</form>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn">Send message</button>
-									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-								</div>
+									<div class="modal-footer">
+										<input type="submit" value="Send Message" class="form-control col-sm-3">
+										<!-- <button type="button" class="btn">Send message</button> -->
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									</div>
 								</div>
 							</div>
-							</div>
-							<!-- End Modal -->
+						</div>
+					</form>
+					<!-- End Modal -->
 
 					<div id="posts">
 						<h4>Posts</h4>
