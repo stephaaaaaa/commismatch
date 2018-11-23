@@ -392,28 +392,28 @@
             $city = $row['city'];
             $country = $row['country'];
 
-            $statement = $connection->prepare("SELECT profilePicture FROM SiteUser WHERE city = :city AND country = :country AND handle != :handle");
+            $statement = $connection->prepare("SELECT city, country, profilePicture, userID FROM SiteUser WHERE city = :city AND country = :country AND handle != :handle");
             $statement->bindParam(":city", $city);
             $statement->bindParam(":country", $country);
             $statement->bindParam(":handle", $handle);
             $statement->execute();
-            $picArray = $statement->fetchAll(PDO::FETCH_COLUMN);
+            $userArray = $statement->fetchAll(PDO::FETCH_CLASS);
 
-            $statement = $connection->prepare("SELECT userID FROM SiteUser WHERE city = :city AND country = :country AND handle != :handle");
-            $statement->bindParam(":city", $city);
-            $statement->bindParam(":country", $country);
-            $statement->bindParam(":handle", $handle);
-            $statement->execute();
-            $idArray = $statement->fetchAll(PDO::FETCH_COLUMN);
+            // $statement = $connection->prepare("SELECT DISTINCT userID FROM SiteUser WHERE city = :city AND country = :country AND handle != :handle");
+            // $statement->bindParam(":city", $city);
+            // $statement->bindParam(":country", $country);
+            // $statement->bindParam(":handle", $handle);
+            // $statement->execute();
+            // $idArray = $statement->fetchAll(PDO::FETCH_COLUMN);
 
-            if(!empty($picArray)){
-                foreach($picArray as $key=>$value){
-                    foreach($idArray as $key=>$value2){
-                        echo "<a href=\"user.php?$value2\"><img src=\"".$value."\"></a>";
-                    }
+            if(!empty($userArray)){
+                foreach($userArray as $key=>$value){
+                        $profilePic = $value->profilePicture;
+                        $id = $value->userID;
+                        echo "<a href=\"user.php?$id\"><img src=\"".$profilePic."\"></a>";
                 }
             }else{
-                echo "<p>No posts to show!</p>";
+                echo "<p>No local users to show!</p>";
             }
         }
     }
