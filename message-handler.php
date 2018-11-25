@@ -1,15 +1,20 @@
 <?php
     // initialize the dao w/require once
 	require_once("dao.php");
-	session_start();
+    session_start();
+    date_default_timezone_set('UTC');
 	
     $dao = new Dao();
     
     $sender = $_SESSION['currentUser']['handle'];
-    $recipient = htmlspecialchars($_POST['recipient']);
+    $senderID = $dao->getIDFromHandle($sender);
+    //$recipient = htmlspecialchars($_POST['recipient']);
+    $recipientID = $_SESSION['currentPage']['currentID'];
     $message = htmlspecialchars($_POST['message']);
-    $sendTime = date("YYYY-mm-dd hh:ii:ss");
+    $sendTime = date('Y-m-d H:i:s');
     $messageErrors = array();
+
+    echo $senderID . $recipientID;
 
     function isValid($raw, $minLength, $maxLength){
         $trimmed = trim($raw);
@@ -26,9 +31,9 @@
 
    	// REDIRECT
 	if(empty($messageErrors)){
-        // send message here or somethin
-        header("Location: user.php?".$_SESSION['currentPage']['currentID']);
-        unset($_SESSION['currentPage']);
+        $dao->sendMessage($senderID, $recipientID, $sendTime, $message);
+       header("Location: user.php?".$_SESSION['currentPage']['currentID']);
+       unset($_SESSION['currentPage']);
 	} else {
 		$_SESSION['errors'] = $messageErrors;
 		$_SESSION['presets'] = array('message' => htmlspecialchars($message));

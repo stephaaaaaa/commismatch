@@ -409,6 +409,25 @@
                 echo "<p>No local users to show!</p>";
             }
         }
-    }
 
+        function sendMessage($senderID, $receiverID, $timeStamp, $messageContent){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("INSERT INTO message(sentStamp, sender, receiver, messageContent)
+            VALUES(:sentStamp, :sender, :receiver, :messageContent)");
+            $statement->bindParam(':sentStamp', $timeStamp);
+            $statement->bindParam(':sender', $senderID);
+            $statement->bindParam(':receiver', $receiverID);
+            $statement->bindParam(':messageContent', $messageContent);
+            $statement->execute();
+        }
+
+        function getIDFromHandle($handle){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT userID from SiteUser WHERE handle = :handle");
+            $statement->bindParam(':handle', $handle);
+            $statement->execute();
+            $row = $statement->fetch();
+            return $row['userID'];
+        }
+    }
 ?>
