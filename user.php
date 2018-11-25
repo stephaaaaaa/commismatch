@@ -6,6 +6,7 @@
 	$url_string = $_SERVER['REQUEST_URI'];
 	$url_pieces = explode("?", $url_string);
 	$urlID = $url_pieces[1];
+	$_SESSION['currentPage']['currentID'] = $urlID;
 	$userID = $dao->getUserIDFromHandle($_SESSION['currentUser']['handle']);
 ?>
 
@@ -105,19 +106,36 @@
 									<div class="modal-body">
 										<form>
 										<div class="form-group">
+											<div>
+												<label>Sending from: <?=$dao->getHandleFromID($userID)?></label>
+											</div>
 											<label for="recipient-name" class="col-form-label">Recipient:</label>
-											<input type="text" readonly="true" class="form-control" id="recipient-name">
+											<input name="recipient" type="text" readonly="true" class="form-control" id="recipient-name">
 										</div>
 										<div class="form-group">
 											<label for="message-text" class="col-form-label">Message:</label>
-											<textarea class="form-control" id="message-text"></textarea>
+											<textarea minLength=1 maxLength=400 name="message" class="form-control" id="message-text">
+												<?php
+													if(isset($_SESSION['presets']['message'])){
+														echo $_SESSION['presets']['message'];
+													}
+												?>
+											</textarea>
 										</div>
 										</form>
 									</div>
 									<div class="modal-footer">
-										<input type="submit" value="Send Message" class="form-control col-sm-3">
-										<!-- <button type="button" class="btn">Send message</button> -->
+										<input id="submitBtn" type="submit" value="Send Message" class="form-control col-sm-3">
 										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									</div>
+									<div> <!--Error div-->
+										<?php
+											if(isset($_SESSION['errors']['message'])){?>
+												<p id="error" class="error"><?=$_SESSION['errors']['message']?></p>
+											<?php
+											} 
+											unset($_SESSION['errors']);
+											?>
 									</div>
 								</div>
 							</div>
@@ -158,4 +176,21 @@
 		modal.find('.modal-title').text('New message to ' + recipient)
 		modal.find('.modal-body input').val(recipient)
 		});
+
+	$('#submitBtn').click(function(){
+		if(!$.trim($("#message-text").val())) {
+    		// textarea is empty or contains only white-space
+			alert("Your message will not send. It must be between 1 and 400 characters.");
+		}
+		if(!$.trim($("#message-text")).length > 400){
+			alert("Your message will not send. It must be between 1 and 400 characters.");
+		}
+	});
+
+	$('#message-text').on('keyup', function(event) {
+   		var len = $('#message-text').val().length;
+   		if (len >= 400) {
+     		$(this).val($(this).val().substring(0, len-1));
+		}
+	});
 </script>

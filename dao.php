@@ -399,13 +399,6 @@
             $statement->execute();
             $userArray = $statement->fetchAll(PDO::FETCH_CLASS);
 
-            // $statement = $connection->prepare("SELECT DISTINCT userID FROM SiteUser WHERE city = :city AND country = :country AND handle != :handle");
-            // $statement->bindParam(":city", $city);
-            // $statement->bindParam(":country", $country);
-            // $statement->bindParam(":handle", $handle);
-            // $statement->execute();
-            // $idArray = $statement->fetchAll(PDO::FETCH_COLUMN);
-
             if(!empty($userArray)){
                 foreach($userArray as $key=>$value){
                         $profilePic = $value->profilePicture;

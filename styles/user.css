@@ -66,6 +66,11 @@
 	width:224px;
 }
 
+#error{
+	color:red;
+	padding-left: 20px;
+}
+
 .footer{
 	position: fixed;
 	font-family: "Quicksand";
