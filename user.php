@@ -107,7 +107,7 @@
 										<form>
 										<div class="form-group">
 											<div>
-												<label>Sending from: <?=$dao->getHandleFromID($userID)?></label>
+												<h5>Sending from: <?=$dao->getHandleFromID($userID)?>. Please make your message between 1 and 400 characters.</h5>
 											</div>
 											<label for="recipient-name" class="col-form-label">Recipient:</label>
 											<input name="recipient" type="text" readonly="true" class="form-control" id="recipient-name">
