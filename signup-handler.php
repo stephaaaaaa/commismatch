@@ -131,6 +131,7 @@
 		echo $blankPhotoPath;
 		$dao->addUser($fName, $lName, $username, $birthday, $gender, $acceptingCommissions, $city, $country, $email, $password, $blankPhotoPath);
 
+		echo "Current password: ".$password;
 		if($dao->validateUser($username, $password)){
 			echo "inside validate user";
 			$_SESSION['access_granted'] = true;
@@ -138,6 +139,8 @@
 			session_regenerate_id(true);
 
 			header("Location: feed.php");
+		}else{
+			echo "error validating user";
 		}
 	} else {
 		$_SESSION['errors'] = $signupErrors;
