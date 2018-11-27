@@ -131,16 +131,11 @@
 		echo $blankPhotoPath;
 		$dao->addUser($fName, $lName, $username, $birthday, $gender, $acceptingCommissions, $city, $country, $email, $password, $blankPhotoPath);
 
-		// if($dao->validateUser($username, $password)){
-			// echo "inside validate user";
-			$_SESSION['access_granted'] = true;
-			$_SESSION['currentUser'] = $dao->getUserHandle($username);
-			session_regenerate_id(true);
+		$_SESSION['access_granted'] = true;
+		$_SESSION['currentUser'] = $dao->getUserHandle($username);
+		session_regenerate_id(true);
 
-			header("Location: feed.php");
-		// }else{
-			// echo "error validating user";
-		// }
+		header("Location: feed.php");
 	} else {
 		$_SESSION['errors'] = $signupErrors;
 
