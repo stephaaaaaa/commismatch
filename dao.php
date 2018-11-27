@@ -411,6 +411,58 @@
             }
         }
 
+        public function getSameCountryUsers($handle){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT city, country FROM SiteUser WHERE handle = :handle");
+            $statement->bindParam(":handle", $handle);
+            $statement->execute();
+            $row = $statement->fetch();
+            $city = $row['city'];
+            $country = $row['country'];
+
+            $statement = $connection->prepare("SELECT profilePicture, userID FROM SiteUser WHERE country = :country AND city != :city AND handle != :handle");
+            $statement->bindParam(":country", $country);
+            $statement->bindParam(":city", $city);
+            $statement->bindParam(":handle", $handle);
+            $statement->execute();
+            $userArray = $statement->fetchAll(PDO::FETCH_CLASS);
+
+            if(!empty($userArray)){
+                foreach($userArray as $key=>$value){
+                        $profilePic = $value->profilePicture;
+                        $id = $value->userID;
+                        echo "<a href=\"user.php?$id\"><img src=\"".$profilePic."\"></a>";
+                }
+            }else{
+                echo "<p>No users to show!</p>";
+            }
+        }
+
+        public function getForeignUsers($handle){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT country FROM SiteUser WHERE handle = :handle");
+            $statement->bindParam(":handle", $handle);
+            $statement->execute();
+            $row = $statement->fetch();
+            $country = $row['country'];
+
+            $statement = $connection->prepare("SELECT country, profilePicture, userID FROM SiteUser WHERE country != :country AND handle != :handle");
+            $statement->bindParam(":country", $country);
+            $statement->bindParam(":handle", $handle);
+            $statement->execute();
+            $userArray = $statement->fetchAll(PDO::FETCH_CLASS);
+
+            if(!empty($userArray)){
+                foreach($userArray as $key=>$value){
+                        $profilePic = $value->profilePicture;
+                        $id = $value->userID;
+                        echo "<a href=\"user.php?$id\"><img src=\"".$profilePic."\"></a>";
+                }
+            }else{
+                echo "<p>No users to show!</p>";
+            }
+        }
+
         function sendMessage($senderID, $receiverID, $timeStamp, $messageContent){
             $connection = $this->getConnection();
             $statement = $connection->prepare("INSERT INTO message(sentStamp, sender, receiver, messageContent)

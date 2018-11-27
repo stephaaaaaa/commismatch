@@ -18,6 +18,21 @@ body{
 	width:75px;
 	height:80px;
 	margin-top:-5%;
+	margin-bottom: 4%;
+}
+
+#body #headers #national img{
+	width:75px;
+	height:80px;
+	margin-top:-5%;
+	margin-bottom: 4%;
+}
+
+#body #headers #international img{
+	width:75px;
+	height:80px;
+	margin-top:-5%;
+	margin-bottom: 4%;
 }
 
 .welcome h5{

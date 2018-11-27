@@ -26,23 +26,24 @@
 				<!-- Use actual followers + following -->
 				<h5></h5>
 					<div id="headers">
-						<h2>Popular Artists</h2>
-						
-						<h2>Popular Commissions</h2>
-
-						<h2>Featured Artists</h2>
-
-						<h2>In Your Area</h2>
+						<h2>Artists in your area</h2>
 						<div id="locals">
 							<?php
 								$dao->getLocalUsers($_SESSION['currentUser']['handle']);
 							?>
 						</div>
-						<!-- <h2>Following</h2>
-					</div>
-					<div id="headers2">
-						<h2>Feed</h2>
-					</div> -->
+						<h2>Far out artists</h2>
+						<div id="national">
+							<?php
+								$dao->getSameCountryUsers($_SESSION['currentUser']['handle']);
+							?>
+						</div>
+						<h2>From even farther away</h2>
+						<div id="international">
+							<?php
+								$dao->getForeignUsers($_SESSION['currentUser']['handle']);
+							?>
+						</div>
 			</div>
 		</div>
 </body>
