@@ -107,10 +107,10 @@
                 return false;
             }
             $hashword = $row['password'];
-            if($password == $hashword){
-                return true;
-            }
-            return false;
+            // if($password == $hashword){
+            //     return true;
+            // }
+            return password_verify($password, $hashword);
         }
 
         public function getUserHandle($handle)

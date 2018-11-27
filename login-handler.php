@@ -28,25 +28,29 @@
     if(strlen($loginPassword) < 1){
         $loginErrors['loginPassword'] = "Please type a password"; 
 	}
-	if($dao->passwordCorrect($loginUsername, $loginPassword) == false){ // is password correct for user?
-		$loginErrors['loginPassword'] = "Invalid username or password";
-	}
+	// if($dao->passwordCorrect($loginUsername, $loginPassword) == false){ // is password correct for user?
+	// 	$loginErrors['loginPassword'] = "Invalid username or password";
+	// }
 
 	// REDIRECT
 	if(empty($loginErrors)){
-		echo "no login errors";
+		echo "no login errors; ";
 		if($dao->validateUser($loginUsername, $loginPassword)){
-			echo "inside validate user";
+			echo "inside validate user; ";
 			$_SESSION['access_granted'] = true;
 			$_SESSION['currentUser'] = $dao->getUserHandle($loginUsername);
 			session_regenerate_id(true);
 			
+			echo "no errors, validating; ";
 			header("Location: feed.php");
+		}else{
+			echo "error validating!";
 		}
 	} else {
 		$_SESSION['errors'] = $loginErrors;
 		$_SESSION['presets'] = array('loginUsername' => htmlspecialchars($loginUsername));
 
+		print_r($_SESSION['errors']);
 		header("Location: login.php");
 	}
 ?>
