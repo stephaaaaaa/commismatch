@@ -4,18 +4,22 @@
 }
 
 .login_img{
-	position: relative;
-	align-content: center;
-	margin-left: 42%;
-	margin-top:4%;
+	position: absolute;
+	margin-top: 10%;
+    margin-left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .login_signup_well {
 	position:absolute; 
-	top:50%; 
+	/* top:50%; 
 	right:50%; 
 	left:47%; 
-	margin: -100px 0 0 -150px;
+	margin: -100px 0 0 -150px; */
+	margin-top: 25%;
+	margin-left: 62%;
+	margin-right: 50%;
+    transform: translate(-50%, -50%);
 	font-family: Quicksand;
 }
 
