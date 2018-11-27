@@ -130,18 +130,18 @@
 		$blankPhotoPath = "./logos_icons/blank.jpg";
 		echo $blankPhotoPath;
 		$dao->addUser($fName, $lName, $username, $birthday, $gender, $acceptingCommissions, $city, $country, $email, $password, $blankPhotoPath);
+		header("Location: feed.php");
 
-		echo "Current password: ".$password;
-		if($dao->validateUser($username, $password)){
-			echo "inside validate user";
-			$_SESSION['access_granted'] = true;
-			$_SESSION['currentUser'] = $dao->getUserHandle($username);
-			session_regenerate_id(true);
+		// echo "Current password: ".$password;
+		// if($dao->validateUser($username, $password)){
+		// 	echo "inside validate user";
+		// 	$_SESSION['access_granted'] = true;
+		// 	$_SESSION['currentUser'] = $dao->getUserHandle($username);
+		// 	session_regenerate_id(true);
 
-			header("Location: feed.php");
-		}else{
-			echo "error validating user";
-		}
+		// }else{
+		// 	echo "error validating user";
+		// }
 	} else {
 		$_SESSION['errors'] = $signupErrors;
 
