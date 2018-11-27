@@ -26,8 +26,8 @@
     <body>
         <div id="banner" class="col-lg-12">
             <a href="./feed.php" class="button">Feed</a>
-            <a href="./commissions_tracker.php" class="button">Commissions Tracker</a>
-            <a href="./users_commissions.php" class="button">My Commissions</a>
+            <!-- <a href="./commissions_tracker.php" class="button">Commissions Tracker</a>
+            <a href="./users_commissions.php" class="button">My Commissions</a> -->
             <a href="./messages.php" class="button">Messages</a>
             <span id="profile">
                 <?php
