@@ -47,8 +47,14 @@
 										<th>Timestamp</th>
 									</tr>
 									<?php
-										for(){
-											
+										for($i = 0; $i < $numMessages; $i++){
+											$senderID = $dao->getSender($userID);
+											echo 
+											"<tr>
+												<th>". $dao->getMessageContent($userID) ."</th>
+												<th><a href=\"user.php?$senderID\" >@". $dao->getHandleFromID($senderID) ."</a></th>
+												<th>". $dao->getTimeStamp($userID) ."</th>
+											</tr>";
 										}
 									?>
 								</table>

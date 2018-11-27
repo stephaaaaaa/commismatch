@@ -423,11 +423,40 @@
 
         function getMessageCount($userID){
             $connection = $this->getConnection();
-            $statement = $connection->prepare("SELECT COUNT(*) AS count FROM message WHERE receiver = :userID;");
+            $statement = $connection->prepare("SELECT COUNT(*) AS count FROM message WHERE receiver = :userID");
             $statement->bindParam(':userID', $userID);
             $statement->execute();
             $row = $statement->fetch();
             return $row['count'];
+        }
+
+        function getMessageContent($userID){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT messageContent FROM message WHERE receiver = :userID ORDER BY sentStamp desc");
+            $statement->bindParam(':userID', $userID);
+            $statement->execute();
+            $row = $statement->fetch();
+            return $row['messageContent'];
+        }
+
+        function getSender($userID){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT sender FROM message WHERE receiver = :userID ORDER BY sentStamp desc");
+            $statement->bindParam(':userID', $userID);
+            $statement->execute();
+            $row = $statement->fetch();
+            $senderID = $row['sender'];
+
+            return $senderID;
+        }
+
+        function getTimeStamp($userID){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT sentStamp FROM message WHERE receiver = :userID ORDER BY sentStamp desc");
+            $statement->bindParam(':userID', $userID);
+            $statement->execute();
+            $row = $statement->fetch();
+            return $row['sentStamp'];
         }
 
         function getIDFromHandle($handle){
