@@ -2,6 +2,12 @@
 <?php
 	$thisPage="MY_MESSAGES";
 	include("navbar.php");
+
+	require_once("dao.php");
+	$dao = new Dao();
+
+	$userID = $dao->getIDFromHandle($_SESSION['currentUser']['handle']);
+	$numMessages = $dao->getMessageCount($userID);
 ?>
 
 <!-- Initializer stuff -->
@@ -26,39 +32,28 @@
 
 			<div class="col-lg-12" id="body">
 				<div align="center" id="user" class="col-lg-3">					
-					<h1>Your Messages</h1>
-					<!-- Number of unread -->
-					<h4>1 Unread</h4>
+					<h1>@<?=$_SESSION['currentUser']['handle']?>'s Messages</h1>
 					<!-- Number of total -->
-					<h4>0 Total</h4>
+					<h4><?=$numMessages?> Total Messages</h4>
 				</div>
 				<div id="user_content" class="col-lg-9">
 					<div id="commissions">
-						<h4>Unread</h4>
 							<!-- 130x130, 90px -->
 							<div id="commissions_post">
 								<table>
 									<tr>
-										<th>Sent date/time</th>
-										<th>Subject</th>
-										<th>Sent by</th>
+										<th>Message Content</th>
+										<th>Sent By</th>
+										<th>Timestamp</th>
 									</tr>
+									<?php
+										for(){
+											
+										}
+									?>
 								</table>
 							</div>
 							</div>
-					<div id="commissions">
-						<h4>Read</h4>
-						<!-- 130x130, 90px -->
-						<div id="commissions_post">
-							<table>
-								<tr>
-									<th>Sent date/time</th>
-									<th>Subject</th>
-									<th>Sent by</th>
-								</tr>
-							</table>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>

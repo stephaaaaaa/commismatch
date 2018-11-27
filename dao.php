@@ -421,6 +421,15 @@
             $statement->execute();
         }
 
+        function getMessageCount($userID){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT COUNT(*) AS count FROM message WHERE receiver = :userID;");
+            $statement->bindParam(':userID', $userID);
+            $statement->execute();
+            $row = $statement->fetch();
+            return $row['count'];
+        }
+
         function getIDFromHandle($handle){
             $connection = $this->getConnection();
             $statement = $connection->prepare("SELECT userID from SiteUser WHERE handle = :handle");
