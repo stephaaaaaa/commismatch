@@ -29,7 +29,7 @@
         {
             $user = $this->getUser($username); // check if there is already a user
             if(!$user){
-                $hashWord = password_hash($password, PASSWORD_DEFAULT);;
+                $hashedWord = password_hash($password, PASSWORD_DEFAULT);;
                 $connection = $this->getConnection();
                 $query = "INSERT INTO SiteUser(firstName, lastName, handle, birthday, gender, acceptingCommissions, city, country, email, password, profilePicture)
                             VALUES (:firstName, :lastName, :handle, :birthday, :gender, :acceptingCommissions, :city, :country, :email, :password, :blank)";
@@ -43,7 +43,7 @@
                 $statement->bindParam(':city', $city);
                 $statement->bindParam(':country', $country);
                 $statement->bindParam(':email', $email);
-                $statement->bindParam(':password', $hashWord);
+                $statement->bindParam(':password', $hashedWord);
                 $statement->bindParam(':blank', $blank);
  
                 try{
@@ -107,10 +107,10 @@
                 return false;
             }
             $hashword = $row['password'];
-            // if($password == $hashword){
-            //     return true;
-            // }
-            return password_verify($password, $hashWord);
+            if($password == $hashword){
+                return true;
+            }
+            return false;
         }
 
         public function getUserHandle($handle)
