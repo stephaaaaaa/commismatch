@@ -474,6 +474,17 @@
             $statement->execute();
         }
 
+        function getMessagesForUser($userID){
+            $connection = $this->getConnection();
+            $statement = $connection->prepare("SELECT * FROM message WHERE receiver = :user ORDER BY sentStamp desc");
+            $statement->bindParam(':user', $userID);
+            $statement->execute();
+            $rowArray = $statement->fetchAll(PDO::FETCH_CLASS);
+
+            return $rowArray;
+            //print_r($rowArray);
+        }
+
         function getMessageCount($userID){
             $connection = $this->getConnection();
             $statement = $connection->prepare("SELECT COUNT(*) AS count FROM message WHERE receiver = :userID");
