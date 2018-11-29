@@ -3,6 +3,7 @@
     require_once("dao.php");
 	$dao = new Dao();
 	
+	$userID = $dao->getUserIDFromHandle($_SESSION['currentUser']['handle']);
 	$url_string = $_SERVER['REQUEST_URI'];
 	$nativeUser = true; // you
 	if(strpos($url_string, '?')){
@@ -10,9 +11,11 @@
 		$nativeUser = false;
 		$url_pieces = explode("?", $url_string);
 		$urlID = $url_pieces[1];
+		if($userID == $urlID){
+			$nativeUser = true;
+		}
 		$_SESSION['currentPage']['currentID'] = $urlID;
 	}
-	$userID = $dao->getUserIDFromHandle($_SESSION['currentUser']['handle']);
 ?>
 
 <div class="col-lg-12">
