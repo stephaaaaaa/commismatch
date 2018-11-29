@@ -4,9 +4,14 @@
 	$dao = new Dao();
 	
 	$url_string = $_SERVER['REQUEST_URI'];
-	$url_pieces = explode("?", $url_string);
-	$urlID = $url_pieces[1];
-	$_SESSION['currentPage']['currentID'] = $urlID;
+	$nativeUser = true; // you
+	if(strpos($url_string, '?')){
+		// check if it has the '?' or not
+		$nativeUser = false;
+		$url_pieces = explode("?", $url_string);
+		$urlID = $url_pieces[1];
+		$_SESSION['currentPage']['currentID'] = $urlID;
+	}
 	$userID = $dao->getUserIDFromHandle($_SESSION['currentUser']['handle']);
 ?>
 
@@ -18,7 +23,7 @@
 					<img 
 						src=
 						<?php
-							if($userID == $urlID){
+							if($nativeUser){
 								echo $dao->getProfilePic($_SESSION['currentUser']['handle']);
 							}else{
 								echo $dao->getProfilePicFromID($urlID);
@@ -29,7 +34,7 @@
 					<!-- User handle -->
 					<h3>
 						@<?php 
-							if($userID == $urlID){
+							if($nativeUser){
 								echo $_SESSION['currentUser']['handle'];	
 							}else{
 								echo $dao->getHandleFromID($urlID);
@@ -39,14 +44,14 @@
 					<!-- Location -->
 					<h5>
 						<?php
-							if($userID == $urlID){
+							if($nativeUser){
 								echo $dao->getUserCity($_SESSION['currentUser']['handle']);
 							}else{
 								echo $dao->getUserCityByID($urlID);
 							}
 						?>, 
 						<?php
-							if($userID == $urlID){
+							if($nativeUser){
 								echo $dao->getUserCountry($_SESSION['currentUser']['handle']);
 							}else{
 								echo $dao->getUserCountryByID($urlID);
@@ -56,7 +61,7 @@
 					<!-- Accepting Status -->
 					<h5>
 						<?php
-							if($userID == $urlID){
+							if($nativeUser){
 								echo $dao->getAcceptingStatus($_SESSION['currentUser']['handle']);
 							}else{
 								echo $dao->getAcceptingStatusFromID($urlID);
@@ -68,7 +73,7 @@
 					<h3>A note from the artist:</h3>
 					<h5>
 						<?php
-							if($userID == $urlID){
+							if($nativeUser){
 								echo "\"".$dao->getArtistQuote($_SESSION['currentUser']['handle'])."\"";
 							}else{
 								echo "\"".$dao->getArtistQuoteByID($urlID)."\"";
@@ -77,7 +82,7 @@
 						
 					</h5>
 					<?php // message icon
-						if($userID == $urlID){
+						if($nativeUser){
 							echo "<a href=\"./messages.php\" class=\"button\" id=\"icon\">
 							<img src=\"./logos_icons/letter.png\"> </a>"; // check your messages
 
@@ -149,7 +154,7 @@
 							<!-- 130x130, 90px -->
 							<div id="photo">
 								<?php
-									if($userID == $urlID){
+									if($nativeUser){
 										echo $dao->retrievePhotos($_SESSION['currentUser']['handle']);
 									}else{
 										echo $dao->retrievePhotosByID($urlID);
