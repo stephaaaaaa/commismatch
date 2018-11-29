@@ -32,13 +32,13 @@
 								$dao->getLocalUsers($_SESSION['currentUser']['handle']);
 							?>
 						</div>
-						<h2>Far out artists</h2>
+						<h2>Artists in your country</h2>
 						<div id="national">
 							<?php
 								$dao->getSameCountryUsers($_SESSION['currentUser']['handle']);
 							?>
 						</div>
-						<h2>From even farther away</h2>
+						<h2>International artists</h2>
 						<div id="international">
 							<?php
 								$dao->getForeignUsers($_SESSION['currentUser']['handle']);
