@@ -6,9 +6,9 @@
     $dao = new Dao();
     require_once('sessionFunctions.php');
 
-    if(!isset($_SESSION['currentUser']['handle'])){
-        header("Location: landing.html");
-    }
+    // if(!isset($_SESSION['currentUser']['handle'])){
+    //     header("Location: landing.html");
+    // }
 ?>
 <!DOCTYPE html>
 <html>
