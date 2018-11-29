@@ -12,6 +12,7 @@
 #user #profile_pic{
 	height:224px;
 	width:224px;
+	border-radius: 50%;
 }
 
 #user #letter_btn{
