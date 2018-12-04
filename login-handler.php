@@ -43,9 +43,11 @@
 			
 			echo "no errors, validating; ";
 			header("Location: feed.php");
-		}else{
-			echo "error validating!";
 		}
+		// else{
+		// 	echo "error validating!";
+		// 	header("Location: login.php");
+		// }
 	} else {
 		$_SESSION['errors'] = $loginErrors;
 		$_SESSION['presets'] = array('loginUsername' => htmlspecialchars($loginUsername));
