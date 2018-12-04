@@ -34,7 +34,7 @@
 
 	// REDIRECT
 	if(empty($loginErrors)){
-		echo "no login errors; ";
+		//echo "no login errors; ";
 		if($dao->validateUser($loginUsername, $loginPassword)){
 			echo "inside validate user; ";
 			$_SESSION['access_granted'] = true;
@@ -43,6 +43,8 @@
 			
 			echo "no errors, validating; ";
 			header("Location: feed.php");
+		}else{
+			header("Location: login.php");
 		}
 		// else{
 		// 	echo "error validating!";
